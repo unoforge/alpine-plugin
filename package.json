@@ -1,0 +1,24 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "cleanup": "node cleanup.js",
+    "setup": "npm install && npm run cleanup && npm run build",
+    "build": "npx lerna run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.2.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "lint-staged": "^15.5.0",
+    "esbuild": "^0.19.0",
+    "brotli-size": "^4.0.0"
+  },
+  "type": "module"
+}
