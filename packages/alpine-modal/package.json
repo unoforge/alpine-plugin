@@ -1,0 +1,65 @@
+{
+  "name": "@flexilla/alpine-modal",
+  "version": "0.0.0",
+  "description": "AlpineJS plugin for creating Modal, Dialog, alert dialog components",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Johnkat MJ",
+    "url": "https://github.com/johnkat-mj"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unoforge/alpine-plugin.git"
+  },
+  "main": "src/index.js",
+  "module": "dist/module.esm.js",
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "watch": "node ./scripts/build.js --watch",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
+  },
+  "bugs": {
+    "url": "https://github.com/unoforge/alpine-plugin/issues"
+  },
+  "homepage": "https://github.com/unoforge/alpine-plugin/packages/alpine-modal/README.md",
+  "devDependencies": {
+    "brotli-size": "^4.0.0",
+    "esbuild": "^0.25.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "lint-staged": "^15.5.0"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "src/index.js",
+    "package.json",
+    "dist"
+  ],
+  "keywords": [
+    "AlpineJS",
+    "Alpine Modal",
+    "Dialog",
+    "Modal",
+    "Alert Dialog",
+    "Modal Dialog",
+    "Alpine Modal Plugin",
+    "Alpine Dialog Plugin",
+    "Alpine Plugin",
+    "Alpinejs Pugin",
+    "ts",
+    "Dissmissible",
+    "component",
+    "interactive",
+    "intercative component",
+    "Flexilla",
+    "Dissmiss"
+  ],
+  "dependencies": {
+    "@flexilla/modal": "^2.0.9"
+  }
+}
