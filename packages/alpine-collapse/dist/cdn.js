@@ -164,7 +164,7 @@
 
   // src/index.js
   function Collapse(Alpine) {
-    Alpine.directive("collapse", (el, {}, { cleanup }) => {
+    Alpine.directive("f-collapse", (el, {}, { cleanup }) => {
       const collapse_ = new f(el);
       cleanup(() => {
         collapse_.cleanup();
