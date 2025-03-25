@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Alpine Autosize Examples</title>
+
+</head>
+
+<body x-data>
+  <section class="mx-auto space-y-16 max-w-2xl py-20">
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-zinc-900 dark:text-white">
+        Default Accordion
+      </h1>
+      <div class="p-10 rounded-lg bg-gradient-to-bl from-blue-600 via-indigo-400 to-sky-600">
+        <div class="flex flex-col gap-3">
+          <button data-collapse-trigger data-target="collapse1"
+            class="bg-zinc-800 text-white px-4 py-2 rounded-lg text-sm">
+            Trigger collapse
+          </button>
+          <div x-collapse id="collapse1"
+            class="tansition-[height] duration-300 ease-linear overflow-hidden w-full h-0 fx-open:h-auto">
+            <div
+              class="rounded-md w-full bg-zinc-100/50 dark:bg-zinc-900/50 border border-gray-200 dark:border-gray-800 p-4 inline-flex overflow-hidden">
+              <p class="text-gray-700 dark:text-gray-300">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam, dolorum, incidunt facilis quasi
+                non ea mollitia odio, iure adipisci
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="./../src/main.js"></script>
+</body>
+
+</html>

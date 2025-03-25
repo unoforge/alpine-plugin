@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alpine Autosize Examples</title>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+
+        @keyframes fadeScale {
+            from {
+                opacity: 0;
+                transform: scale(.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-60px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-60px);
+            }
+        }
+
+        [data-modal-test-1css] [data-modal-content],
+        [data-modal-test-2css] [data-modal-content] {
+            animation-fill-mode: both;
+        }
+
+        [data-modal-test-1css] [data-modal-content],
+        [data-modal-test-2css] [data-modal-content] {
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        [data-modal-test-2css][data-state=close] [data-modal-content] {
+            animation: slidOut 0.5s ease-in-out;
+        }
+    </style>
+
+</head>
+
+<body x-data>
+    <section class=" mx-auto space-y-16 max-w-2xl py-20">
+        <div class="space-y-6">
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-white">
+                Default Accordion
+            </h1>
+            <div class="p-10 rounded-lg bg-gradient-to-bl from-blue-600 via-indigo-400 to-sky-600">
+                <div class="flex items-center justify-center">
+                    <button data-modal-target="modal-default"
+                        class="bg-neutral-800 text-white px-4 py-2 rounded-lg text-sm">
+                        DefaultModal
+                    </button>
+                    <template x-teleport="body">
+                        <div x-data data-fx-modal x-modal data-modal-test-1 aria-hidden="true"
+                            data-modal-id="modal-default"
+                            data-modal-overlay="inset-0 fixed bg-gray-800/70 backdrop-filter backdrop-blur-3xl ease-linear duration-300 transition-all data-[state=close]:opacity-0 data-[state=close]:invisible"
+                            class="inset-0 justify-center items-start hidden data-[state=open]:flex p-4 fixed wscreen h-screen top-0 left-0">
+                            <dialog data-modal-content
+                                class="bg-white rounded-lg overflow-hidden w-full max-w-2xl flex flex-col ease-linear transition-all duration-300 absolute top-4">
+                                <div
+                                    class="border-b border-b-gray-100 dark:border-b-gray-900 p-4 flex justify-between items-center">
+                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                        Modal Default
+                                    </h2>
+                                    <button aria-label="close modal" data-close-modal
+                                        class="text-gray-700 dark:text-gray-300 rounded-full p-2 border border-gray-200 dark:border-gray-800 duration-200 hover:bg-gray-100 dark:hover:bg-gray-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                            class="size-4">
+                                            <path
+                                                d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="px-4 py-6">
+                                    <button data-modal-target="modal-default-2"
+                                        class="bg-neutral-800 text-white px-4 py-2 rounded-lg text-sm">
+                                        Open Another Modal
+                                    </button>
+                                </div>
+                                <div
+                                    class="border-t border-t-gray-100 dark:border-t-gray-900 p-4 flex items-center gap-x-3">
+                                    <button
+                                        class="rounded px-4 h-8 flex items-center bg-blue-600 text-white duration-300 hover:bg-opacity-80">
+                                        Save
+                                    </button>
+                                    <button data-close-modal
+                                        class="rounded px-4 h-8 flex items-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 duration-300 hover:bg-gray-100 dark:hover:bg-gray-900">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </dialog>
+                        </div>
+                        <div data-fx-modal x-modal data-modal-test-1b aria-hidden="true" data-modal-id="modal-default-2"
+                            data-modal-overlay="inset-0 fixed bg-gray-800/70 backdrop-filter backdrop-blur-3xl"
+                            class="inset-0 justify-center items-start hidden data-[state=open]:flex p-4 fixed wscreen h-screen top-0 left-0">
+                            <dialog data-modal-content
+                                class="bg-white rounded-lg overflow-hidden w-full max-w-2xl flex flex-col ease-linear transition-all duration-300 absolute top-4">
+                                <div
+                                    class="border-b border-b-gray-100 dark:border-b-gray-900 p-4 flex justify-between items-center">
+                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                        Second modal
+                                    </h2>
+                                    <button aria-label="close modal" data-close-modal
+                                        class="text-gray-700 dark:text-gray-300 rounded-full p-2 border border-gray-200 dark:border-gray-800 duration-200 hover:bg-gray-100 dark:hover:bg-gray-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                            class="size-4">
+                                            <path
+                                                d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="px-4 py-6">
+
+                                </div>
+                                <div
+                                    class="border-t border-t-gray-100 dark:border-t-gray-900 p-4 flex items-center gap-x-3">
+                                    <button
+                                        class="rounded px-4 h-8 flex items-center bg-blue-600 text-white duration-300 hover:bg-opacity-80">
+                                        Save
+                                    </button>
+                                    <button data-close-modal
+                                        class="rounded px-4 h-8 flex items-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 duration-300 hover:bg-gray-100 dark:hover:bg-gray-900">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </dialog>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="./../src/main.js"></script>
+</body>
+
+</html>
