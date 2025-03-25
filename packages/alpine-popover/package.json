@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "AlpineJS plugin for adding Popover functionality to your AlpineJS components",
   "type": "module",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "author": {
     "name": "Johnkat MJ",

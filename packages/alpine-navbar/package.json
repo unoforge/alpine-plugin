@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "AlpineJS plugin for easily adding interactive navbar",
   "type": "module",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "author": {
     "name": "Johnkat MJ",
