@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-tabs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "AlpineJS plugin for creating collapsible components",
   "type": "module",
   "private": false,

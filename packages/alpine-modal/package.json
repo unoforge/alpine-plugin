@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-modal",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "AlpineJS plugin for creating Modal, Dialog, alert dialog components",
   "type": "module",
   "private": false,
