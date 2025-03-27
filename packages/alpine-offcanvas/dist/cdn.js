@@ -12,8 +12,10 @@
     if (!(s instanceof HTMLElement) || !(t instanceof HTMLElement))
       throw new Error("Both parameters must be valid HTML elements.");
     const e = t.parentElement;
-    if (e) e.insertBefore(s, t);
-    else throw new Error("Existing element must have a parent element.");
+    if (e)
+      e.insertBefore(s, t);
+    else
+      throw new Error("Existing element must have a parent element.");
   };
   var k = ({
     element: s,
@@ -59,9 +61,11 @@
   };
   var B = (s, t) => {
     const e = s;
-    if (e === "" || !e) return;
+    if (e === "" || !e)
+      return;
     const n = document.createElement("div");
-    if (n.setAttribute("aria-hidden", "true"), n.setAttribute("data-state", "visible"), n.setAttribute("data-fx-offcanvas-overlay", ""), n.setAttribute("data-offcanvas-el", t), e === "") return;
+    if (n.setAttribute("aria-hidden", "true"), n.setAttribute("data-state", "visible"), n.setAttribute("data-fx-offcanvas-overlay", ""), n.setAttribute("data-offcanvas-el", t), e === "")
+      return;
     const a = e.split(" ");
     return e !== "" && n.classList.add(...a), n;
   };
@@ -72,7 +76,8 @@
     document.body.style.overflow = s === "open" ? "hidden" : "", document.body.style.overflowY = s === "open" ? "hidden" : "auto";
   };
   var x = (s, t) => {
-    if (s === t) return;
+    if (s === t)
+      return;
     s.setAttribute("aria-hidden", "true"), s.setAttribute("data-state", "close");
     const e = m(`[data-fx-offcanvas-overlay][data-offcanvas-el=${s.getAttribute("id")}]`, s.parentElement);
     e instanceof HTMLElement && p(e);
@@ -80,7 +85,8 @@
   var I = (s) => {
     const t = d("[data-fx-offcanvas][data-state=open]");
     if (!(t.length <= 0))
-      for (const e of t) x(e, s);
+      for (const e of t)
+        x(e, s);
   };
   var h = class {
     static initGlobalRegistry() {
@@ -139,7 +145,8 @@
           setExitAction: (g) => {
             t2 = g;
           }
-        }), ((f2 = (l2 = (i2 = this.options).beforeHide) == null ? void 0 : l2.call(i2)) == null ? void 0 : f2.cancelAction) || t2) return;
+        }), ((f2 = (l2 = (i2 = this.options).beforeHide) == null ? void 0 : l2.call(i2)) == null ? void 0 : f2.cancelAction) || t2)
+          return;
         const n2 = this.offCanvasElement.getAttribute("id"), a2 = m(`[data-fx-offcanvas-overlay][data-offcanvas-el=${n2}]`);
         a2 instanceof HTMLElement && p(a2), C(
           this.offCanvasElement,
@@ -154,7 +161,8 @@
         this.offCanvasElement.getAttribute("data-state") === "open" ? this.closeOffCanvas() : this.openOffCanvas();
       });
       const n = typeof t == "string" ? m(t) : t;
-      if (!(n instanceof HTMLElement)) throw new Error("Invalid Offcanvas, the provided Element is not a valid HTMLElement");
+      if (!(n instanceof HTMLElement))
+        throw new Error("Invalid Offcanvas, the provided Element is not a valid HTMLElement");
       const a = h.getInstance("offcanvas", n);
       if (a)
         return a;
@@ -184,10 +192,12 @@
       e instanceof HTMLElement && (y({ newElement: e, existingElement: this.offCanvasElement }), this.staticBackdrop || e.addEventListener("click", this.closeOffCanvas)), document.addEventListener("keydown", this.closeWithEsc), (l = (i = this.options).onShow) == null || l.call(i), v(this.offCanvasElement, "offcanvas-open", { offcanvasId: this.offCanvasElement.id });
     }
     initCloseBtns() {
-      for (const t of this.offCanvasCloseBtns) t.addEventListener("click", this.closeOffCanvas);
+      for (const t of this.offCanvasCloseBtns)
+        t.addEventListener("click", this.closeOffCanvas);
     }
     initTriggers() {
-      for (const t of this.offCanvasTriggers) t.addEventListener("click", this.changeState);
+      for (const t of this.offCanvasTriggers)
+        t.addEventListener("click", this.changeState);
     }
     setupOffcanvas() {
       this.initTriggers(), this.initCloseBtns();
@@ -241,7 +251,8 @@
   };
   o(c, "autoInit", (t = "[data-fx-offcanvas]") => {
     const e = d(t);
-    for (const n of e) new c(n);
+    for (const n of e)
+      new c(n);
   }), /**
   * Creates a new instance of Offcanvas with the given element and options.
   * This is an alternative to using the constructor directly.
@@ -264,10 +275,40 @@
   // src/index.js
   function Offcanvas(Alpine) {
     Alpine.directive("offcanvas", (el, {}, { cleanup }) => {
+      const offcanvasId = el.getAttribute("id");
+      if (!modalId) {
+        console.error("\u274C id is required but missing on element:", el);
+        return;
+      }
       const offcanvas_ = new E(el);
+      if (!Alpine.store("sheets")) {
+        Alpine.store("sheets", {});
+      }
+      Alpine.store("sheets")[offcanvasId] = modal_;
+      const openHandler = () => offcanvas_.open();
+      const closeHandler = () => offcanvas_.close();
+      document.addEventListener(`sheet:${offcanvasId}:open`, openHandler);
+      document.addEventListener(`sheet:${offcanvasId}:close`, closeHandler);
       cleanup(() => {
+        document.removeEventListener(`sheet:${modalId}:open`, openHandler);
+        document.removeEventListener(
+          `sheet:${offcanvasId}:close`,
+          closeHandler
+        );
         offcanvas_.cleanup();
+        delete Alpine.store("sheets")[modalId];
       });
+    });
+    Alpine.magic("offcanvas", (el) => (id) => {
+      if (!Alpine.store("sheets")) {
+        console.warn("\u26A0\uFE0F Alpine store for Offcanvas is not initialized.");
+        return null;
+      }
+      if (!Alpine.store("sheets")[id]) {
+        console.warn(`\u26A0\uFE0F No offcanvas instance found for ID: ${id}`);
+        return null;
+      }
+      return Alpine.store("sheets")[id];
     });
   }
   var src_default = Offcanvas;

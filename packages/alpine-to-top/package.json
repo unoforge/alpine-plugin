@@ -1,7 +1,7 @@
 {
-  "name": "@flexilla/alpine-accordion",
+  "name": "@flexilla/alpine-to-top",
   "version": "0.0.1",
-  "description": "A simple AlpineJS plugin for autosizing textareas",
+  "description": "AlpineJS directive to add Scroll to top",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/unoforge/alpine-plugin/issues"
   },
-  "homepage": "https://github.com/unoforge/alpine-plugin/packages/alpine-accordion/README.md",
+  "homepage": "https://github.com/unoforge/alpine-plugin/packages/alpine-navbar/README.md",
   "devDependencies": {
     "brotli-size": "^4.0.0",
     "esbuild": "^0.25.1",
@@ -44,7 +44,19 @@
     "package.json",
     "dist"
   ],
+  "keywords": [
+    "AlpineJS",
+    "Alpine navigation",
+    "Toggle scroll-to-top",
+    "Alpine Scroll To Top",
+    "Alpinejs Pugin",
+    "ts",
+    "component",
+    "interactive",
+    "intercative component",
+    "Flexilla"
+  ],
   "dependencies": {
-    "@flexilla/accordion": "^2.1.1"
+    "@flexilla/utilities": "^2.1.1"
   }
 }

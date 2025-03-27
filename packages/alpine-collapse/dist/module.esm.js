@@ -41,7 +41,8 @@ var y = (t, e = "close", s = "0px") => {
   t.style.height = e === "open" ? "auto" : s, d(t, e);
 };
 var I = (t) => {
-  if (t.getAttribute("data-state") === "open") return;
+  if (t.getAttribute("data-state") === "open")
+    return;
   d(t, "open");
   const e = t.scrollHeight;
   t.style.height = `${e}px`, E({
@@ -163,7 +164,7 @@ var f = o;
 
 // src/index.js
 function Collapse(Alpine) {
-  Alpine.directive("collapse", (el, {}, { cleanup }) => {
+  Alpine.directive("f-collapse", (el, {}, { cleanup }) => {
     const collapse_ = new f(el);
     cleanup(() => {
       collapse_.cleanup();

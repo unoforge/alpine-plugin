@@ -3,30 +3,35 @@
   var e = (t, o = document.body) => o.querySelector(t);
 
   // ../../node_modules/@flexilla/utilities/dist/toggler.js
-  var v = ({ navbarElement: d2, onToggle: i }) => {
-    const e2 = typeof d2 == "string" ? e(d2) : d2;
-    if (!(e2 instanceof HTMLElement)) return;
-    const r = e2.getAttribute("id"), s2 = e(`[data-nav-trigger][data-toggle-nav=${r}]`), t = e(`[data-nav-overlay][data-navbar-id=${r}]`);
-    if (s2 instanceof HTMLButtonElement) {
-      const f2 = () => {
-        const n2 = e2.dataset.state || "close", c = n2 === "open" ? "close" : "open";
-        e2.setAttribute("data-state", c), s2.ariaExpanded = n2 === "open" ? "false" : "true", t && (t.ariaHidden = "true", t.setAttribute("data-state", c)), i == null || i({ isExpanded: c === "open" });
-      };
-      s2.addEventListener("click", f2);
-      const a2 = () => {
-        e2.setAttribute("data-state", "close"), s2.setAttribute("aria-expanded", "false"), t && t.setAttribute("data-state", "close"), i == null || i({ isExpanded: false });
-      };
-      e2.addEventListener("click", a2), t instanceof HTMLElement && !t.hasAttribute("data-static-overlay") && t.addEventListener("click", a2);
-    }
+  var m = ({ navbarElement: r, onToggle: s2 }) => {
+    const i = typeof r == "string" ? e(r) : r;
+    if (!(i instanceof HTMLElement))
+      return;
+    const n2 = i.getAttribute("id"), e2 = e(`[data-nav-trigger][data-toggle-nav=${n2}]`), t = e(`[data-nav-overlay][data-navbar-id=${n2}]`), c = () => {
+      const o = i.dataset.state || "close", l2 = o === "open" ? "close" : "open";
+      i.setAttribute("data-state", l2), e2 && (e2.ariaExpanded = o === "open" ? "false" : "true"), t && (t.ariaHidden = "true", t.setAttribute("data-state", l2)), s2 == null || s2({ isExpanded: l2 === "open" });
+    };
+    e2 && e2.addEventListener("click", c);
+    const a = () => {
+      i.setAttribute("data-state", "close"), e2 == null || e2.setAttribute("aria-expanded", "false"), t && t.setAttribute("data-state", "close"), s2 == null || s2({ isExpanded: false });
+    };
+    return i.addEventListener("click", a), t instanceof HTMLElement && !t.hasAttribute("data-static-overlay") && t.addEventListener("click", a), {
+      cleanup: () => {
+        t instanceof HTMLElement && !t.hasAttribute("data-static-overlay") && (i.removeEventListener("click", a), e2 && e2.removeEventListener("click", c), t.removeEventListener("click", a));
+      },
+      close: a,
+      toggle: c
+    };
   };
 
   // src/index.js
   function Navbar(Alpine) {
     Alpine.directive("navbar", (el, {}, { cleanup }) => {
-      v({
+      const nav = m({
         navbarElement: el
       });
       cleanup(() => {
+        nav.cleanup();
       });
     });
   }

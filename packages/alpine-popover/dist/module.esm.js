@@ -110,9 +110,12 @@ var oe = class {
    */
   constructor(e, t, s = {}) {
     h(this, "reference"), h(this, "popper"), h(this, "offsetDistance"), h(this, "placement"), h(this, "disableOnResize"), h(this, "disableOnScroll"), h(this, "onUpdate"), h(this, "isWindowEventsRegistered"), h(this, "validateElements", () => {
-      if (!(this.reference instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Reference Element");
-      if (!(this.popper instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Popper");
-      if (typeof this.offsetDistance != "number") throw new Error("OffsetDistance must be a number");
+      if (!(this.reference instanceof HTMLElement))
+        throw new Error("Invalid HTMLElement for Reference Element");
+      if (!(this.popper instanceof HTMLElement))
+        throw new Error("Invalid HTMLElement for Popper");
+      if (typeof this.offsetDistance != "number")
+        throw new Error("OffsetDistance must be a number");
     }), h(this, "setPopperStyleProperty", (m, v) => {
       this.popper.style.setProperty("--fx-popper-placement-x", `${m}px`), this.popper.style.setProperty("--fx-popper-placement-y", `${v}px`);
     }), h(this, "setInitialStyles", () => {
@@ -152,9 +155,12 @@ var oe = class {
       eventEffect: r = {},
       onUpdate: l
     } = s;
-    if (!(e instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Reference Element");
-    if (!(t instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Popper");
-    if (s.offsetDistance && typeof s.offsetDistance != "number") throw new Error("OffsetDistance must be a number");
+    if (!(e instanceof HTMLElement))
+      throw new Error("Invalid HTMLElement for Reference Element");
+    if (!(t instanceof HTMLElement))
+      throw new Error("Invalid HTMLElement for Popper");
+    if (s.offsetDistance && typeof s.offsetDistance != "number")
+      throw new Error("OffsetDistance must be a number");
     const { disableOnResize: d, disableOnScroll: c } = r;
     this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = n, this.disableOnResize = d || false, this.disableOnScroll = c || false, this.onUpdate = l;
   }
@@ -247,8 +253,10 @@ var he = class {
       this.triggerElement.removeEventListener("click", this.toggleStateOnClick), this.triggerStrategy === "hover" && this.triggerElement.removeEventListener("mouseenter", this.showOnMouseEnter);
     });
     var o;
-    if (this.contentElement = this.getElement(t), this.triggerElement = this.getElement(e), !(this.triggerElement instanceof HTMLElement)) throw new Error("Trigger element must be a valid HTML element");
-    if (!(this.contentElement instanceof HTMLElement)) throw new Error("Content element must be a valid HTML element");
+    if (this.contentElement = this.getElement(t), this.triggerElement = this.getElement(e), !(this.triggerElement instanceof HTMLElement))
+      throw new Error("Trigger element must be a valid HTML element");
+    if (!(this.contentElement instanceof HTMLElement))
+      throw new Error("Content element must be a valid HTML element");
     this.options = s, this.triggerStrategy = this.options.triggerStrategy || "click", this.placement = this.options.placement || "bottom", this.offsetDistance = this.options.offsetDistance || 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.options.preventCloseFromInside || false, this.defaultState = this.options.defaultState || "close", this.eventEffect = (o = this.options.popper) == null ? void 0 : o.eventEffect, this.popper = new oe(
       this.triggerElement,
       this.contentElement,
@@ -420,7 +428,8 @@ var P = class _P {
    */
   static autoInit(e = "[data-fx-popover]") {
     const t = j(e);
-    for (const s of t) new _P(s);
+    for (const s of t)
+      new _P(s);
   }
 };
 

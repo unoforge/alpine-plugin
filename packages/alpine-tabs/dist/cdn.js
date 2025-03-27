@@ -16,8 +16,10 @@
     if (!(a instanceof HTMLElement) || !(t instanceof HTMLElement))
       throw new Error("Both parameters must be valid HTML elements.");
     const e = t.parentElement;
-    if (e) e.insertBefore(a, t);
-    else throw new Error("Existing element must have a parent element.");
+    if (e)
+      e.insertBefore(a, t);
+    else
+      throw new Error("Existing element must have a parent element.");
   };
   var g = (a, t) => {
     for (const [e, n] of Object.entries(t))
@@ -38,7 +40,8 @@
     indicatorClassName: t,
     tabList: e
   }) => {
-    if (!t || t === "") return;
+    if (!t || t === "")
+      return;
     const n = document.createElement("span");
     g(n, {
       "data-tab-indicator": "",
@@ -98,9 +101,11 @@
   };
   var v = ({ triggerElement: a, tabTriggers: t, tabsPanelContainer: e, showAnimation: n, indicatorTransformDuration: i, indicatorTransformEaseing: c, tabList: l }) => {
     const r = h("[data-tab-panel][data-state=active]", e);
-    if (r instanceof HTMLElement && (g(r, { "data-state": "hidden" }), r.hidden = true), !(a instanceof HTMLElement)) return;
+    if (r instanceof HTMLElement && (g(r, { "data-state": "hidden" }), r.hidden = true), !(a instanceof HTMLElement))
+      return;
     const o = h(`[data-tab-panel]#${a.getAttribute("data-target")}`, e);
-    if (!(o instanceof HTMLElement)) return;
+    if (!(o instanceof HTMLElement))
+      return;
     R(a, t), o.hidden = false, g(o, { "data-state": A, "aria-hidden": D }), g(a, { "data-state": A, tabindex: "0" }), a instanceof HTMLAnchorElement && a.setAttribute("aria-selected", "true"), n && n !== "" && o.style.setProperty("--un-tab-show-animation", `${n}`);
     const d = E("[data-tab-indicator]", l);
     x({
@@ -195,7 +200,8 @@
         return e2 == null ? void 0 : e2.getAttribute("id");
       });
       s(this, "handleGlobalTabChanges", (t2) => {
-        if (t2.ariaSelected === "true" || this.activeTabTrigger === t2) return;
+        if (t2.ariaSelected === "true" || this.activeTabTrigger === t2)
+          return;
         this.activeTabTrigger = t2;
         const n2 = v({
           triggerElement: t2,
@@ -304,7 +310,8 @@
   };
   s(m, "autoInit", (t = "[data-fx-tabs]") => {
     const e = w(t);
-    for (const n of e) new m(n);
+    for (const n of e)
+      new m(n);
   }), /**
   * Creates and initializes a new Tabs instance.
   * 

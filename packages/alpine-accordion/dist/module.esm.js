@@ -14,8 +14,10 @@ var A = (n, t, e) => {
 };
 var E = (n) => {
   const t = l("[data-accordion-trigger]", n), e = l("[data-accordion-content]", n), i = n.hasAttribute("data-default-open");
-  if (!(t instanceof HTMLButtonElement)) throw new Error("The element does't have a Valid Trigger");
-  if (!(e instanceof HTMLDivElement)) throw new Error("No Valid Content Element");
+  if (!(t instanceof HTMLButtonElement))
+    throw new Error("The element does't have a Valid Trigger");
+  if (!(e instanceof HTMLDivElement))
+    throw new Error("No Valid Content Element");
   const o = n.getAttribute("data-accordion-value") ?? "", s = t.getAttribute("aria-expanded") === "true";
   return { accordionTriggerElement: t, accordionContentElement: e, accordionItemValue: o, isItemExpanded: s, defaultOpened: i };
 };
@@ -52,7 +54,8 @@ var b = (n, t = "close", e = "0px") => {
   n.style.height = t === "open" ? "auto" : e, m(n, t);
 };
 var T = (n) => {
-  if (n.getAttribute("data-state") === "open") return;
+  if (n.getAttribute("data-state") === "open")
+    return;
   m(n, "open");
   const t = n.scrollHeight;
   n.style.height = `${t}px`, x({
@@ -71,7 +74,8 @@ var L = (n, t, e) => {
 };
 var S = (n, t) => {
   const e = document.activeElement;
-  if (!(e instanceof HTMLElement)) return;
+  if (!(e instanceof HTMLElement))
+    return;
   e.matches("[data-accordion-trigger]") && (n.key === "ArrowUp" || n.key === "ArrowDown") && (n.preventDefault(), L(e, n.key === "ArrowUp", t).focus());
 };
 var p = (n, t) => {
@@ -135,7 +139,8 @@ var h = class h2 {
     }, this.items = u("[data-accordion-item]", this.accordionEl).filter((o) => o.parentElement && o.parentElement === this.accordionEl), this.initAccordion();
   }
   initAccordion() {
-    if (!this.accordionEl) return;
+    if (!this.accordionEl)
+      return;
     const { accordionType: t, defaultValue: e, preventClosingAll: i } = this.options;
     let o = l(`[data-accordion-item][data-accordion-value="${e}"]`, this.accordionEl);
     if (t === "single")
@@ -143,10 +148,12 @@ var h = class h2 {
     else {
       this.closeAll(true);
       const a = this.items.some((r) => r.getAttribute("data-state") === "open");
-      if (i && !a) this.setItemState(this.items[0], "open", true);
+      if (i && !a)
+        this.setItemState(this.items[0], "open", true);
       else {
         const r = this.items.filter((d) => d.getAttribute("data-state") === "open");
-        for (const d of r) this.setItemState(d, "open", true);
+        for (const d of r)
+          this.setItemState(d, "open", true);
       }
     }
     this.addEventListeners();
@@ -231,7 +238,8 @@ var h = class h2 {
 };
 c(h, "autoInit", (t = "[data-fx-accordion]") => {
   const e = u(t, document.documentElement);
-  for (const i of e) new h(i);
+  for (const i of e)
+    new h(i);
 }), /**
 * Shortcut method to create a new Accordion instance
 * @static
