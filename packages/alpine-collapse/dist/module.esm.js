@@ -41,7 +41,8 @@ var y = (t, e = "close", s = "0px") => {
   t.style.height = e === "open" ? "auto" : s, d(t, e);
 };
 var I = (t) => {
-  if (t.getAttribute("data-state") === "open") return;
+  if (t.getAttribute("data-state") === "open")
+    return;
   d(t, "open");
   const e = t.scrollHeight;
   t.style.height = `${e}px`, E({

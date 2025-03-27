@@ -111,7 +111,8 @@ var m = class m2 {
       }
     });
     const l = typeof e == "string" ? f(e, document.body) : e;
-    if (!(l instanceof HTMLElement)) throw new Error("Provided Element not a valid HTMLElement");
+    if (!(l instanceof HTMLElement))
+      throw new Error("Provided Element not a valid HTMLElement");
     this.dismissibleElement = l, this.action = s || this.dismissibleElement.dataset.action || "hide-from-screen", this.dismissButtons = c("[data-dismiss-btn]", this.dismissibleElement), this.onDismiss = i, this.dismissibleElement.setAttribute("aria-hidden", "false");
     const a = o.getInstance("dismissible", this.dismissibleElement);
     if (a)
@@ -133,7 +134,8 @@ var m = class m2 {
 };
 n(m, "autoInit", (e = "[data-fx-dismissible]") => {
   const s = c(e);
-  for (const i of s) new m(i);
+  for (const i of s)
+    new m(i);
 }), /**
 * 
 * @param dismissible 

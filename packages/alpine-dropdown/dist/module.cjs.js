@@ -143,9 +143,12 @@ var re = class {
    */
   constructor(e, t, n = {}) {
     p(this, "reference"), p(this, "popper"), p(this, "offsetDistance"), p(this, "placement"), p(this, "disableOnResize"), p(this, "disableOnScroll"), p(this, "onUpdate"), p(this, "isWindowEventsRegistered"), p(this, "validateElements", () => {
-      if (!(this.reference instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Reference Element");
-      if (!(this.popper instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Popper");
-      if (typeof this.offsetDistance != "number") throw new Error("OffsetDistance must be a number");
+      if (!(this.reference instanceof HTMLElement))
+        throw new Error("Invalid HTMLElement for Reference Element");
+      if (!(this.popper instanceof HTMLElement))
+        throw new Error("Invalid HTMLElement for Popper");
+      if (typeof this.offsetDistance != "number")
+        throw new Error("OffsetDistance must be a number");
     }), p(this, "setPopperStyleProperty", (c, f) => {
       this.popper.style.setProperty("--fx-popper-placement-x", `${c}px`), this.popper.style.setProperty("--fx-popper-placement-y", `${f}px`);
     }), p(this, "setInitialStyles", () => {
@@ -185,9 +188,12 @@ var re = class {
       eventEffect: r = {},
       onUpdate: a
     } = n;
-    if (!(e instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Reference Element");
-    if (!(t instanceof HTMLElement)) throw new Error("Invalid HTMLElement for Popper");
-    if (n.offsetDistance && typeof n.offsetDistance != "number") throw new Error("OffsetDistance must be a number");
+    if (!(e instanceof HTMLElement))
+      throw new Error("Invalid HTMLElement for Reference Element");
+    if (!(t instanceof HTMLElement))
+      throw new Error("Invalid HTMLElement for Popper");
+    if (n.offsetDistance && typeof n.offsetDistance != "number")
+      throw new Error("OffsetDistance must be a number");
     const { disableOnResize: m, disableOnScroll: d } = r;
     this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = i, this.disableOnResize = m || false, this.disableOnScroll = d || false, this.onUpdate = a;
   }
@@ -287,8 +293,10 @@ var ce = class {
       this.triggerElement.removeEventListener("click", this.toggleStateOnClick), this.triggerStrategy === "hover" && this.triggerElement.removeEventListener("mouseenter", this.showOnMouseEnter);
     });
     var o;
-    if (this.contentElement = this.getElement(t), this.triggerElement = this.getElement(e), !(this.triggerElement instanceof HTMLElement)) throw new Error("Trigger element must be a valid HTML element");
-    if (!(this.contentElement instanceof HTMLElement)) throw new Error("Content element must be a valid HTML element");
+    if (this.contentElement = this.getElement(t), this.triggerElement = this.getElement(e), !(this.triggerElement instanceof HTMLElement))
+      throw new Error("Trigger element must be a valid HTML element");
+    if (!(this.contentElement instanceof HTMLElement))
+      throw new Error("Content element must be a valid HTML element");
     this.options = n, this.triggerStrategy = this.options.triggerStrategy || "click", this.placement = this.options.placement || "bottom", this.offsetDistance = this.options.offsetDistance || 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.options.preventCloseFromInside || false, this.defaultState = this.options.defaultState || "close", this.eventEffect = (o = this.options.popper) == null ? void 0 : o.eventEffect, this.popper = new re(
       this.triggerElement,
       this.contentElement,
@@ -351,7 +359,8 @@ var de = (s) => typeof s == "string" ? W(s) : s;
 var pe = ({ containerElement: s, targetChildren: e = "a:not([disabled]), button:not([disabled])", direction: t }) => {
   let n = false;
   const o = de(s) || document.body, i = typeof e == "string" ? U(e, o) : e, r = (a) => {
-    if (a.preventDefault(), o.focus(), i.length === 0) return;
+    if (a.preventDefault(), o.focus(), i.length === 0)
+      return;
     const m = a.key, d = document.activeElement;
     let c = i.findIndex((g) => g === d);
     if (c === -1) {
@@ -517,7 +526,8 @@ var S = class S2 {
 };
 l(S, "autoInit", (e = "[data-fx-dropdown]") => {
   const t = U(e);
-  for (const n of t) new S(n);
+  for (const n of t)
+    new S(n);
 });
 var z = S;
 

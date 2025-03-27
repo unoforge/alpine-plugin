@@ -30,8 +30,10 @@ var J = ({
   if (!(t instanceof HTMLElement) || !(e instanceof HTMLElement))
     throw new Error("Both parameters must be valid HTML elements.");
   const n = e.parentElement;
-  if (n) n.insertBefore(t, e);
-  else throw new Error("Existing element must have a parent element.");
+  if (n)
+    n.insertBefore(t, e);
+  else
+    throw new Error("Existing element must have a parent element.");
 };
 var Q = ({
   element: t,
@@ -69,7 +71,8 @@ var U = ({ modalContent: t, overlayClassName: e }) => {
   return n.setAttribute("aria-hidden", "true"), J({ newElement: n, existingElement: t }), n.classList.add(...e), n.setAttribute("data-modal-overlay", ""), n;
 };
 var k = (t, e, n) => {
-  if (!(e instanceof HTMLElement)) throw new Error("No modal-content found");
+  if (!(e instanceof HTMLElement))
+    throw new Error("No modal-content found");
   t.setAttribute("aria-hidden", n === "open" ? "false" : "true"), t.setAttribute("data-state", n), e.setAttribute("data-state", n);
   const a = r("[data-modal-overlay]", t);
   a instanceof HTMLElement && a.setAttribute("data-state", n);
@@ -83,19 +86,22 @@ var V = (t, e, n) => {
 };
 var Z = (t, e, n) => {
   var q;
-  if (!(t instanceof HTMLElement)) throw new Error("Modal Element must be a valid element");
+  if (!(t instanceof HTMLElement))
+    throw new Error("Modal Element must be a valid element");
   const { animateContent: a, allowBodyScroll: d, preventCloseModal: s, overlayClass: f, onShow: u, onHide: h, onToggle: m, beforeHide: b, enableStackedModals: g } = n, p = d || t.hasAttribute("data-allow-body-scroll") && t.getAttribute("data-allow-body-scroll") !== "false", F = s || t.hasAttribute("data-prevent-close-modal") && t.getAttribute("data-prevent-close-modal") !== "false", C = g || t.hasAttribute("data-enable-stacked") && t.getAttribute("data-enable-stacked") !== "false", K = (f == null ? void 0 : f.split(" ")) || ((q = t.dataset.modalOverlay) == null ? void 0 : q.split(" ")) || "";
   let x = false;
   t.setAttribute("data-allow-body-scroll", `${p}`);
   const o = r("[data-modal-content]", t), L = H("[data-close-modal]", t);
   let i = null, S = false;
-  if (r("[data-modal-overlay]", t) instanceof HTMLElement && (i = r("[data-modal-overlay]", t), i.setAttribute("data-overlay-nature", "default"), S = true), !(o instanceof HTMLElement)) throw new Error("Modal content element not found");
+  if (r("[data-modal-overlay]", t) instanceof HTMLElement && (i = r("[data-modal-overlay]", t), i.setAttribute("data-overlay-nature", "default"), S = true), !(o instanceof HTMLElement))
+    throw new Error("Modal content element not found");
   const D = o.dataset.enterAnimation || "", P = o.dataset.exitAnimation || "";
   o.setAttribute("data-state", "close");
   const R = (l) => {
     l.preventDefault(), l.key === "Escape" && !F && A();
   }, X = (l) => {
-    if (C) return;
+    if (C)
+      return;
     const w = H("[data-fx-modal][data-state=open]");
     for (const y of w)
       if (y !== l) {
@@ -131,7 +137,8 @@ var Z = (t, e, n) => {
       }
     });
     const w = (E = b == null ? void 0 : b()) == null ? void 0 : E.cancelAction;
-    if (l || w) return;
+    if (l || w)
+      return;
     const y = () => {
       k(t, o, "close"), V(C, p, t), S || W(i), B(t, "modal-close", { modalId: t.id });
     }, M = () => {
@@ -178,7 +185,8 @@ var v = class v2 {
     c(this, "options");
     c(this, "state");
     const d = typeof e == "string" ? r(e) : e;
-    if (!(d instanceof HTMLElement)) throw new Error("Modal element not found or invalid. Please provide a valid HTMLElement or selector.");
+    if (!(d instanceof HTMLElement))
+      throw new Error("Modal element not found or invalid. Please provide a valid HTMLElement or selector.");
     this.modalElement = d, this.options = n, this.state = (n == null ? void 0 : n.defaultState) || this.modalElement.dataset.state || "close";
     const s = O.getInstance("modal", this.modalElement);
     if (s)
@@ -190,7 +198,8 @@ var v = class v2 {
 };
 c(v, "autoInit", (e = "[data-fx-modal]") => {
   const n = H(e);
-  for (const a of n) new v(a);
+  for (const a of n)
+    new v(a);
 }), /**
 * Creates and initializes a new Modal instance
 * @param modal - The modal element or selector string
@@ -212,10 +221,37 @@ var Y = v;
 // src/index.js
 function Modal(Alpine) {
   Alpine.directive("modal", (el, {}, { cleanup }) => {
-    const modal_ = new Y(el);
+    const modalId = el.getAttribute("data-modal-id");
+    if (!modalId) {
+      console.error("\u274C data-modal-id is required but missing on element:", el);
+      return;
+    }
+    const modalInstance = new Y(el);
+    if (!Alpine.store("modals")) {
+      Alpine.store("modals", {});
+    }
+    Alpine.store("modals")[modalId] = modalInstance;
+    const openHandler = () => modalInstance.showModal();
+    const closeHandler = () => modalInstance.hideModal();
+    document.addEventListener(`modal:${modalId}:open`, openHandler);
+    document.addEventListener(`modal:${modalId}:close`, closeHandler);
     cleanup(() => {
-      modal_.cleanup();
+      document.removeEventListener(`modal:${modalId}:open`, openHandler);
+      document.removeEventListener(`modal:${modalId}:close`, closeHandler);
+      modalInstance.cleanup();
+      delete Alpine.store("modals")[modalId];
     });
+  });
+  Alpine.magic("modal", () => (id) => {
+    if (!Alpine.store("modals")) {
+      console.warn("\u26A0\uFE0F Alpine store for modals is not initialized.");
+      return null;
+    }
+    if (!Alpine.store("modals")[id]) {
+      console.warn(`\u26A0\uFE0F No modal instance found for ID: ${id}`);
+      return null;
+    }
+    return Alpine.store("modals")[id];
   });
 }
 var src_default = Modal;

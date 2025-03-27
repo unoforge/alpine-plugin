@@ -2,10 +2,12 @@ import { toggleNavbar } from "@flexilla/utilities";
 
 function Navbar(Alpine) {
     Alpine.directive("navbar", (el, {}, { cleanup }) => {
-        toggleNavbar({
+        const nav = toggleNavbar({
             navbarElement: el,
         });
-        cleanup(() => {});
+        cleanup(() => {
+            nav.cleanup();
+        });
     });
 }
 

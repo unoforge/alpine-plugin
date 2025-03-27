@@ -1,7 +1,7 @@
 {
-  "name": "@flexilla/alpine-navbar",
+  "name": "@flexilla/alpine-to-top",
   "version": "0.0.0",
-  "description": "AlpineJS plugin for easily adding interactive navbar",
+  "description": "AlpineJS directive to add Scroll to top",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -46,10 +46,9 @@
   ],
   "keywords": [
     "AlpineJS",
-    "Alpine Navbar",
-    "Toggle Navbar",
-    "Alpine Plugin Navbar",
-    "Alpine Plugin",
+    "Alpine navigation",
+    "Toggle scroll-to-top",
+    "Alpine Scroll To Top",
     "Alpinejs Pugin",
     "ts",
     "component",
