@@ -58,6 +58,6 @@
     "Flexilla"
   ],
   "dependencies": {
-    "@flexilla/offcanvas": "^2.0.10"
+    "@flexilla/offcanvas": "^2.0.12"
   }
 }
