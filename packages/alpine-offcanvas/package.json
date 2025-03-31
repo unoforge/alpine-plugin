@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-offcanvas",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "AlpineJS plugin for adding offcanvas functionality to your AlpineJS components",
   "type": "module",
   "private": false,
