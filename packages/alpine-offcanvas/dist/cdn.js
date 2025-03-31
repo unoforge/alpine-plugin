@@ -155,7 +155,7 @@
         ), document.removeEventListener("keydown", this.closeWithEsc), !this.allowBodyScroll && !a2 && document.removeEventListener("click", this.closeWhenClickOutSide), (u = (r2 = this.options).onHide) == null || u.call(r2), v(this.offCanvasElement, "offcanvas-close", { offcanvasId: this.offCanvasElement.id });
       });
       o(this, "closeWithEsc", (t2) => {
-        t2.preventDefault(), t2.key === "Escape" && this.closeOffCanvas();
+        t2.key === "Escape" && (t2.preventDefault(), this.closeOffCanvas());
       });
       o(this, "changeState", () => {
         this.offCanvasElement.getAttribute("data-state") === "open" ? this.closeOffCanvas() : this.openOffCanvas();
@@ -254,9 +254,7 @@
     for (const n of e)
       new c(n);
   }), /**
-  * Creates a new instance of Offcanvas with the given element and options.
   * This is an alternative to using the constructor directly.
-  * 
   * @param offcanvas - The offcanvas element selector or HTMLElement
   * @param options - Configuration options for the offcanvas
   * @returns A new Offcanvas instance

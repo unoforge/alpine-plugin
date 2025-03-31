@@ -99,7 +99,7 @@
     const D = o.dataset.enterAnimation || "", P = o.dataset.exitAnimation || "";
     o.setAttribute("data-state", "close");
     const R = (l) => {
-      l.preventDefault(), l.key === "Escape" && !F && A();
+      l.key === "Escape" && (l.preventDefault(), F || A());
     }, X = (l) => {
       if (C)
         return;
