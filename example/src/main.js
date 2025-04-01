@@ -11,6 +11,7 @@ import Tabs from "./../../packages/alpine-tabs";
 import Navbar from "./../../packages/alpine-navbar";
 import AutoResize from "./../../packages/alpine-autoresize-area";
 
+
 window.Alpine = Alpine;
 Alpine.plugin(FlexillaAccordion);
 Alpine.plugin(Collapse);

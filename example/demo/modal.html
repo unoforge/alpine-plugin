@@ -7,7 +7,6 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Alpine Autosize Examples</title>
-
     <style>
         @keyframes fadeIn {
             from {
@@ -28,7 +27,6 @@
                 opacity: 0;
             }
         }
-
 
         @keyframes fadeScale {
             from {
@@ -112,8 +110,12 @@
                             </div>
                             <div class="px-4 py-6">
                                 <form action="">
-                                    <input type="email" name="" id="" placeholder="OOps" class="px-4 py-2 border rounded-md border-gray-200">
+                                    <input type="email" name="" id="" placeholder="OOps"
+                                        class="px-4 py-2 border rounded-md border-gray-200">
                                 </form>
+                                <button data-insert-el>
+                                    Demo Test
+                                </button>
                             </div>
                             <div
                                 class="border-t border-t-gray-100 dark:border-t-gray-900 p-4 flex items-center gap-x-3">
@@ -134,6 +136,12 @@
     </section>
 
     <script type="module" src="./../src/main.js"></script>
+    <script>
+        const closeB = document.querySelector('[data-close-in-modal]')
+        closeB.addEventListener('click', () => {
+            document.dispatchEvent(new CustomEvent('modal:modal-default:close'))
+        })
+    </script>
 </body>
 
 </html>

@@ -5,28 +5,53 @@ function Modal(Alpine) {
         const modalId = el.getAttribute("data-modal-id");
 
         if (!modalId) {
-            console.error("❌ data-modal-id is required but missing on element:", el);
+            console.error(
+                "❌ data-modal-id is required but missing on element:",
+                el
+            );
+            return;
+        }
+        const content = el.querySelector("[data-modal-content]");
+        if (!content) {
+            console.error(
+                "❌ data-modal-content Element is required but missing in Modal Element:",
+                el
+            );
             return;
         }
 
-        const modalInstance = new FlexillaModal(el);
+        const trigger = document.querySelector(
+            `[data-modal-trigger][data-modal-id="${modalId}"]`
+        );
+        const modalInstance = new FlexillaModal(el, {
+            dispatchEventToDocument: false,
+        });
         if (!Alpine.store("modals")) {
             Alpine.store("modals", {});
         }
 
         Alpine.store("modals")[modalId] = modalInstance;
 
-        const openHandler = () => modalInstance.showModal();
-        const closeHandler = () => modalInstance.hideModal();
-
-        document.addEventListener(`modal:${modalId}:open`, openHandler);
-        document.addEventListener(`modal:${modalId}:close`, closeHandler);
+        const showModal = () => {
+            modalInstance.showModal();
+        };
+        const hideModal = () => {
+            modalInstance.hideModal();
+        };
+        document.addEventListener(`modal:${modalId}:open`, showModal);
+        document.addEventListener(`modal:${modalId}:close`, hideModal);
+        if (trigger instanceof HTMLElement) {
+            trigger.addEventListener("click", showModal);
+        }
 
         cleanup(() => {
-            document.removeEventListener(`modal:${modalId}:open`, openHandler);
-            document.removeEventListener(`modal:${modalId}:close`, closeHandler);
             modalInstance.cleanup();
             delete Alpine.store("modals")[modalId];
+            if (trigger instanceof HTMLElement) {
+                trigger.removeEventListener("click", showModal);
+            }
+            document.removeEventListener(`modal:${modalId}:open`, showModal);
+            document.removeEventListener(`modal:${modalId}:close`, hideModal);
         });
     });
 
