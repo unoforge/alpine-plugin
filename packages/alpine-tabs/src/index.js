@@ -1,4 +1,4 @@
-import {Tabs as FlexillaTabs} from "@flexilla/tabs"
+import { Tabs as FlexillaTabs } from "@flexilla/tabs";
 
 function Tabs(Alpine) {
     Alpine.directive("tabs", (el, {}, { cleanup }) => {

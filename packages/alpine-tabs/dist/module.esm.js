@@ -1,13 +1,13 @@
 // ../../node_modules/@flexilla/tabs/dist/tabs.js
-var C = Object.defineProperty;
-var P = (a, t, e) => t in a ? C(a, t, { enumerable: true, configurable: true, writable: true, value: e }) : a[t] = e;
+var x = Object.defineProperty;
+var P = (a, t, e) => t in a ? x(a, t, { enumerable: true, configurable: true, writable: true, value: e }) : a[t] = e;
 var s = (a, t, e) => P(a, typeof t != "symbol" ? t + "" : t, e);
-var E = (a, t = document.body) => t.querySelector(a);
-var h = (a, t = document.body) => {
-  const e = w(a, t);
+var g = (a, t = document.body) => t.querySelector(a);
+var d = (a, t = document.body) => {
+  const e = T(a, t);
   return Array.from(e).find((n) => n.parentElement === t);
 };
-var w = (a, t = document.body) => Array.from(t.querySelectorAll(a));
+var T = (a, t = document.body) => Array.from(t.querySelectorAll(a));
 var M = ({
   newElement: a,
   existingElement: t
@@ -20,7 +20,7 @@ var M = ({
   else
     throw new Error("Existing element must have a parent element.");
 };
-var g = (a, t) => {
+var p = (a, t) => {
   for (const [e, n] of Object.entries(t))
     a.setAttribute(e, n);
 };
@@ -28,13 +28,33 @@ var H = (a, t, e) => {
   const n = new CustomEvent(t, { detail: e });
   a.dispatchEvent(n);
 };
+var O = ({
+  container: a,
+  attributeToWatch: t,
+  onChildAdded: e
+}) => {
+  const n = new MutationObserver((i) => {
+    for (const l of i)
+      if (l.type === "childList" && Array.from(l.addedNodes).some(
+        (r) => r instanceof HTMLElement && r.hasAttribute(t)
+      )) {
+        e();
+        break;
+      }
+  });
+  return n.observe(a, {
+    childList: true
+  }), () => {
+    n.disconnect();
+  };
+};
 var S = "true";
 var D = "false";
 var I = "inactive";
-var A = "active";
+var L = "active";
 var $ = "cubic-bezier(.48,1.55,.28,1)";
 var N = { className: "", transformDuration: 0, transformEasing: "" };
-var O = ({
+var R = ({
   activeTabTrigger: a,
   indicatorClassName: t,
   tabList: e
@@ -42,19 +62,19 @@ var O = ({
   if (!t || t === "")
     return;
   const n = document.createElement("span");
-  g(n, {
+  p(n, {
     "data-tab-indicator": "",
     "aria-hidden": "true"
   });
   const i = t.split(" ");
   n.classList.add(...i);
-  const c = a.parentElement === e ? a : a.parentElement;
+  const l = a.parentElement === e ? a : a.parentElement;
   return M({
     newElement: n,
-    existingElement: c
+    existingElement: l
   }), n;
 };
-var x = ({
+var C = ({
   triggerElement: a,
   indicator_: t,
   transformDuration: e = 300,
@@ -82,70 +102,70 @@ var x = ({
     }
   );
 };
-var R = (a, t) => {
+var V = (a, t) => {
   for (const e of t)
-    e !== a && (g(e, { "data-state": I, tabindex: "-1" }), e instanceof HTMLAnchorElement && e.setAttribute("aria-selected", "false"));
+    e !== a && (p(e, { "data-state": I, tabindex: "-1" }), e instanceof HTMLAnchorElement && e.setAttribute("aria-selected", "false"));
 };
-var V = ({ indicatorTransformDuration: a, indicatorTransformEaseing: t, indicator: e, triggerElement: n, tabList: i }) => {
-  !(e instanceof HTMLSpanElement) || !(n instanceof HTMLElement) || x({
+var k = ({ indicatorTransformDuration: a, indicatorTransformEaseing: t, indicator: e, triggerElement: n, tabList: i }) => {
+  !(e instanceof HTMLSpanElement) || !(n instanceof HTMLElement) || C({
     triggerElement: n,
     indicator_: e,
     transformDuration: a,
     transformEasing: t
   });
 };
-var k = (a, t) => {
+var G = (a, t) => {
   for (const e of t)
-    e !== a && (g(e, { "data-state": I, "aria-hidden": S }), e.hidden = true);
+    e !== a && (p(e, { "data-state": I, "aria-hidden": S }), e.hidden = true);
 };
-var v = ({ triggerElement: a, tabTriggers: t, tabsPanelContainer: e, showAnimation: n, indicatorTransformDuration: i, indicatorTransformEaseing: c, tabList: l }) => {
-  const r = h("[data-tab-panel][data-state=active]", e);
-  if (r instanceof HTMLElement && (g(r, { "data-state": "hidden" }), r.hidden = true), !(a instanceof HTMLElement))
+var v = ({ triggerElement: a, tabTriggers: t, tabsPanelContainer: e, showAnimation: n, indicatorTransformDuration: i, indicatorTransformEaseing: l, tabList: r }) => {
+  const o = d("[data-tab-panel][data-state=active]", e);
+  if (o instanceof HTMLElement && (p(o, { "data-state": "hidden" }), o.hidden = true), !(a instanceof HTMLElement))
     return;
-  const o = h(`[data-tab-panel]#${a.getAttribute("data-target")}`, e);
-  if (!(o instanceof HTMLElement))
+  const c = d(`[data-tab-panel]#${a.getAttribute("data-target")}`, e);
+  if (!(c instanceof HTMLElement))
     return;
-  R(a, t), o.hidden = false, g(o, { "data-state": A, "aria-hidden": D }), g(a, { "data-state": A, tabindex: "0" }), a instanceof HTMLAnchorElement && a.setAttribute("aria-selected", "true"), n && n !== "" && o.style.setProperty("--un-tab-show-animation", `${n}`);
-  const d = E("[data-tab-indicator]", l);
-  x({
+  V(a, t), c.hidden = false, p(c, { "data-state": L, "aria-hidden": D }), p(a, { "data-state": L, tabindex: "0" }), a instanceof HTMLAnchorElement && a.setAttribute("aria-selected", "true"), n && n !== "" && c.style.setProperty("--un-tab-show-animation", `${n}`);
+  const h = g("[data-tab-indicator]", r);
+  C({
     triggerElement: a,
-    indicator_: d,
+    indicator_: h,
     transformDuration: i,
-    transformEasing: c
+    transformEasing: l
   });
-  const b = h("[data-fx-tabs]", o);
+  const b = d("[data-fx-tabs]", c);
   if (b instanceof HTMLElement) {
-    const f = h("[data-tab-list-wrapper]", b) || b, u = h("[data-tab-list]", f), p = u.querySelector("[data-tabs-trigger][data-state=active]"), T = u.querySelector("span[data-tab-indicator]");
-    T instanceof HTMLSpanElement && p instanceof HTMLElement && !b.hasAttribute("data-nested-indicator-seteled") && (b.setAttribute("data-nested-indicator-seteled", ""), V({
+    const f = d("[data-tab-list-wrapper]", b) || b, u = d("[data-tab-list]", f), E = u.querySelector("[data-tabs-trigger][data-state=active]"), A = u.querySelector("span[data-tab-indicator]");
+    A instanceof HTMLSpanElement && E instanceof HTMLElement && !b.hasAttribute("data-nested-indicator-seteled") && (b.setAttribute("data-nested-indicator-seteled", ""), k({
       indicatorTransformDuration: i,
-      indicatorTransformEaseing: c,
-      indicator: T,
-      triggerElement: p,
+      indicatorTransformEaseing: l,
+      indicator: A,
+      triggerElement: E,
       tabList: u
     }));
   }
-  return { currentTabPanel: o };
+  return { currentTabPanel: c };
 };
-var G = (a, t) => {
+var q = (a, t) => {
   const e = t.findIndex(
-    (l) => l.getAttribute("data-state") === A
-  ), n = a.key === "ArrowUp" || a.key === "ArrowLeft" ? -1 : 1, i = (l) => !t[l].hasAttribute("disabled"), c = (l, r, o) => {
-    let d = (l + r + o) % o;
-    for (; !i(d); )
-      d = (d + r + o) % o;
-    return d;
+    (r) => r.getAttribute("data-state") === L
+  ), n = a.key === "ArrowUp" || a.key === "ArrowLeft" ? -1 : 1, i = (r) => !t[r].hasAttribute("disabled"), l = (r, o, c) => {
+    let h = (r + o + c) % c;
+    for (; !i(h); )
+      h = (h + o + c) % c;
+    return h;
   };
   if (a.key === "ArrowUp" || a.key === "ArrowDown" || a.key === "ArrowLeft" || a.key === "ArrowRight") {
     a.preventDefault();
-    const l = c(
+    const r = l(
       e,
       n,
       t.length
-    ), r = t[l];
-    r.focus(), r.click();
+    ), o = t[r];
+    o.focus(), o.click();
   }
 };
-var L = class {
+var w = class {
   static initGlobalRegistry() {
     window.$flexillaInstances || (window.$flexillaInstances = {});
   }
@@ -155,7 +175,7 @@ var L = class {
   static getInstance(t, e) {
     var n, i;
     return this.initGlobalRegistry(), (i = (n = window.$flexillaInstances[t]) == null ? void 0 : n.find(
-      (c) => c.element === e
+      (l) => l.element === e
     )) == null ? void 0 : i.instance;
   }
   static removeInstance(t, e) {
@@ -178,7 +198,6 @@ var m = class m2 {
    * @param {string} [options.defaultValue] - The initial active tab panel's ID.
    * @param {string} [options.animationOnShow] - Animation class to apply when showing tab panels.
    * @param {IndicatorOptions} [options.indicatorOptions] - Configuration for the tab indicator.
-   * @throws {Error} When invalid elements are provided or required elements are missing.
    */
   constructor(t, e = {}) {
     s(this, "tabsElement");
@@ -194,8 +213,9 @@ var m = class m2 {
     s(this, "indicatorTransformEaseing");
     s(this, "indicatorTransformDuration");
     s(this, "panelsContainer");
+    s(this, "cleanupObserver", null);
     s(this, "getDefActivePanelValue", (t2) => {
-      const e2 = h("[data-tab-panel][data-state=active]", t2);
+      const e2 = d("[data-tab-panel][data-state=active]", t2);
       return e2 == null ? void 0 : e2.getAttribute("id");
     });
     s(this, "handleGlobalTabChanges", (t2) => {
@@ -224,7 +244,7 @@ var m = class m2 {
       t2.preventDefault(), this.handleGlobalTabChanges(e2);
     });
     s(this, "handleKeyEventChanges", (t2) => {
-      G(t2, this.tabTriggers);
+      q(t2, this.tabTriggers);
     });
     s(this, "cleanupSingle", (t2) => {
       t2 instanceof HTMLElement && (t2.removeEventListener("click", this.handleTabChanges), t2.removeEventListener("keydown", this.handleKeyEventChanges));
@@ -233,36 +253,45 @@ var m = class m2 {
       if (this.tabsElement) {
         for (const t2 of this.tabTriggers)
           this.cleanupSingle(t2);
-        L.removeInstance("tabs", this.tabsElement), this.tabTriggers = [], this.tabPanels = [], this.activeTabTrigger = null, this.tabList = null, this.panelsContainer = null, this.tabsElement = null, this.options = null, this.indicatorOptions = null;
+        this.cleanupObserver && (this.cleanupObserver(), this.cleanupObserver = null), w.removeInstance("tabs", this.tabsElement), this.tabTriggers = [], this.tabPanels = [];
       }
     });
+    s(this, "reload", () => {
+      this.cleanup();
+      const t2 = d("[data-tab-list-wrapper]", this.tabsElement) || this.tabsElement;
+      this.tabList = d("[data-tab-list]", t2);
+      const e2 = T("[data-tab-panel]", this.panelsContainer);
+      this.tabPanels = e2.filter((n2) => n2.parentElement === this.panelsContainer), this.validateTabElements(this.tabList, this.tabPanels), this.tabTriggers = T("[data-tabs-trigger]", this.tabList), this.initTabs();
+    });
     s(this, "changeTab", (t2) => {
-      const e2 = E(`[data-tabs-trigger][data-target='${t2}']`, this.tabList);
+      const e2 = g(`[data-tabs-trigger][data-target='${t2}']`, this.tabList);
       e2 instanceof HTMLElement && this.handleGlobalTabChanges(e2);
     });
-    const n = typeof t == "string" ? E(t) : t;
+    const n = typeof t == "string" ? g(t) : t;
     if (!(n instanceof HTMLElement))
       throw new Error("Please Provide a valid HTMLElement for the tabs component");
     this.tabsElement = n;
-    const i = L.getInstance("tabs", this.tabsElement);
+    const i = w.getInstance("tabs", this.tabsElement);
     if (i)
       return i;
-    this.panelsContainer = h("[data-panels-container]", this.tabsElement) || this.tabsElement, this.options = e, this.indicatorOptions = this.options.indicatorOptions || N;
-    const { defaultValue: c, animationOnShow: l } = this.options;
-    this.defaultTabValue = c || this.tabsElement.dataset.defaultValue || this.getDefActivePanelValue(this.panelsContainer) || "", this.showAnimation = l || this.tabsElement.dataset.showAnimation || "";
-    const r = h("[data-tab-list-wrapper]", this.tabsElement) || this.tabsElement;
-    this.tabList = h("[data-tab-list]", r);
-    const o = w("[data-tab-panel]", this.panelsContainer);
-    if (this.tabPanels = o.filter((T) => T.parentElement === this.panelsContainer), !(this.tabList instanceof HTMLElement))
-      throw new Error("TabList Element is required, tabList must have a data-tab-list attribute and be direct descendant of the tabs or must be wrapped inside another element with data-tab-list-wrapper");
-    if (!this.tabPanels.every((T) => T instanceof HTMLElement))
-      throw new Error("TabPanels Element are required, tabPanels must have a data-tab-panel attribute and be direct descendant of the tabs or the panels container (data-panels-container)");
-    if (this.tabTriggers = w("[data-tabs-trigger]", this.tabList), this.tabTriggers.length <= 0)
+    this.panelsContainer = d("[data-panels-container]", this.tabsElement) || this.tabsElement, this.options = e, this.indicatorOptions = this.options.indicatorOptions || N;
+    const { defaultValue: l, animationOnShow: r } = this.options;
+    this.defaultTabValue = l || this.tabsElement.dataset.defaultValue || this.getDefActivePanelValue(this.panelsContainer) || "", this.showAnimation = r || this.tabsElement.dataset.showAnimation || "";
+    const o = d("[data-tab-list-wrapper]", this.tabsElement) || this.tabsElement;
+    this.tabList = d("[data-tab-list]", o);
+    const c = T("[data-tab-panel]", this.panelsContainer);
+    if (this.tabPanels = c.filter((E) => E.parentElement === this.panelsContainer), this.validateTabElements(this.tabList, this.tabPanels), this.tabTriggers = T("[data-tabs-trigger]", this.tabList), this.tabTriggers.length <= 0)
       throw new Error("No trigger found, Tab component must have at least one trigger");
-    const b = E("[data-tabs-trigger][data-state=active]", this.tabList);
-    this.activeTabTrigger = E(`[data-tabs-trigger][data-target='${this.defaultTabValue}']`, this.tabList) || b || this.tabTriggers[0];
-    const { transformEasing: f, transformDuration: u, className: p } = this.indicatorOptions;
-    this.indicatorClassName = p || this.tabsElement.getAttribute("data-indicator-class-name") || "", this.indicatorTransformEaseing = f || this.tabsElement.dataset.indicatorTransformEasing || $, this.indicatorTransformDuration = u || parseInt(this.tabsElement.dataset.indicatorTransformDuration || "") || 400, this.initTabs(), L.register("tabs", this.tabsElement, this);
+    const h = g("[data-tabs-trigger][data-state=active]", this.tabList);
+    this.activeTabTrigger = g(`[data-tabs-trigger][data-target='${this.defaultTabValue}']`, this.tabList) || h || this.tabTriggers[0];
+    const { transformEasing: b, transformDuration: f, className: u } = this.indicatorOptions;
+    this.indicatorClassName = u || this.tabsElement.getAttribute("data-indicator-class-name") || "", this.indicatorTransformEaseing = b || this.tabsElement.dataset.indicatorTransformEasing || $, this.indicatorTransformDuration = f || parseInt(this.tabsElement.dataset.indicatorTransformDuration || "") || 400, this.initTabs();
+  }
+  validateTabElements(t, e) {
+    if (!(t instanceof HTMLElement))
+      throw new Error("TabList Element is required, tabList must have a data-tab-list attribute and be direct descendant of the tabs or must be wrapped inside another element with data-tab-list-wrapper");
+    if (!e.every((i) => i instanceof HTMLElement))
+      throw new Error("TabPanels Element are required, tabPanels must have a data-tab-panel attribute and be direct descendant of the tabs or the panels container (data-panels-container)");
   }
   initTabs() {
     this.tabsElement.hasAttribute("data-fx-tabs") || this.tabsElement.setAttribute("data-fx-tabs", ""), this.initializeTab(
@@ -277,38 +306,42 @@ var m = class m2 {
         indicatorClassName: this.indicatorClassName,
         tabList: this.tabList
       }
-    );
+    ), this.cleanupObserver = O({
+      container: this.panelsContainer,
+      attributeToWatch: "data-tab-panel",
+      onChildAdded: this.reload
+    }), w.register("tabs", this.tabsElement, this);
   }
   attachTriggerEvents(t) {
     t instanceof HTMLElement && (t.addEventListener("click", this.handleTabChanges), t.addEventListener("keydown", this.handleKeyEventChanges));
   }
-  initializeTab({ tabTriggers: t, tabPanels: e, tabsPanelContainer: n, showAnimation: i, indicatorTransformDuration: c, indicatorTransformEaseing: l, activeTabTrigger: r, indicatorClassName: o, tabList: d }) {
-    O({
-      activeTabTrigger: r,
-      indicatorClassName: o,
-      tabList: d
+  initializeTab({ tabTriggers: t, tabPanels: e, tabsPanelContainer: n, showAnimation: i, indicatorTransformDuration: l, indicatorTransformEaseing: r, activeTabTrigger: o, indicatorClassName: c, tabList: h }) {
+    R({
+      activeTabTrigger: o,
+      indicatorClassName: c,
+      tabList: h
     });
     for (const u of t)
       this.attachTriggerEvents(u);
-    const b = h(`[data-tab-panel]#${r.getAttribute("data-target")}`, n);
-    k(b, e);
+    const b = d(`[data-tab-panel]#${o.getAttribute("data-target")}`, n);
+    G(b, e);
     const f = v({
-      triggerElement: r,
+      triggerElement: o,
       tabTriggers: t,
       tabsPanelContainer: n,
       showAnimation: i,
-      indicatorTransformDuration: c,
-      indicatorTransformEaseing: l,
-      tabList: d
+      indicatorTransformDuration: l,
+      indicatorTransformEaseing: r,
+      tabList: h
     });
     this.options.onChangeTab && this.options.onChangeTab({
-      currentTrigger: r,
+      currentTrigger: o,
       currentPanel: f == null ? void 0 : f.currentTabPanel
     });
   }
 };
 s(m, "autoInit", (t = "[data-fx-tabs]") => {
-  const e = w(t);
+  const e = T(t);
   for (const n of e)
     new m(n);
 }), /**

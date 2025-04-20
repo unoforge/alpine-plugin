@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-dismissible",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "AlpineJS plugin for creating collapsible components",
   "type": "module",
   "private": false,
@@ -58,6 +58,6 @@
     "Dissmiss"
   ],
   "dependencies": {
-    "@flexilla/dismissible": "^2.0.9"
+    "@flexilla/dismissible": "^2.0.11"
   }
 }

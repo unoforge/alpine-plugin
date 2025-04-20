@@ -29,10 +29,6 @@ var m = (t, e, s) => e in t ? u(t, e, { enumerable: true, configurable: true, wr
 var l = (t, e, s) => m(t, typeof e != "symbol" ? e + "" : e, s);
 var c = (t, e = document.body) => e.querySelector(t);
 var x = (t, e = document.body) => Array.from(e.querySelectorAll(t));
-var r = (t, e, s) => {
-  const i = new CustomEvent(e, { detail: s });
-  t.dispatchEvent(i);
-};
 var w = ({
   element: t,
   callback: e,
@@ -58,6 +54,10 @@ var E = ({
     type: "transition",
     keysCheck: ["all 0s ease 0s", "all"]
   });
+};
+var r = (t, e, s) => {
+  const i = new CustomEvent(e, { detail: s });
+  t.dispatchEvent(i);
 };
 var d = (t, e) => {
   t.setAttribute("aria-hidden", e === "open" ? "false" : "true"), t.setAttribute("data-state", e);

@@ -184,6 +184,9 @@ var c = class c2 {
     o(this, "changeState", () => {
       this.offCanvasElement.getAttribute("data-state") === "open" ? this.closeOffCanvas() : this.openOffCanvas();
     });
+    o(this, "setOptions", ({ allowBodyscroll: t2 }) => {
+      t2 !== void 0 && (this.allowBodyScroll = t2);
+    });
     const n = typeof t == "string" ? m(t) : t;
     if (!(n instanceof HTMLElement))
       throw new Error("Invalid Offcanvas, the provided Element is not a valid HTMLElement");
@@ -228,9 +231,6 @@ var c = class c2 {
   }
   /**
    * Opens the offcanvas element.
-   * This method will trigger the beforeShow callback if provided,
-   * show the backdrop if configured, and finally trigger the onShow callback.
-   * 
    * @example
    * ```ts
    * const offcanvas = new Offcanvas('#sidebar');
