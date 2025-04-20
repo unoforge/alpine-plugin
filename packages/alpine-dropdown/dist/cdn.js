@@ -2,10 +2,10 @@
   // ../../node_modules/@flexilla/dropdown/dist/dropdown.js
   var j = Object.defineProperty;
   var q = (s, e, t) => e in s ? j(s, e, { enumerable: true, configurable: true, writable: true, value: t }) : s[e] = t;
-  var l = (s, e, t) => q(s, typeof e != "symbol" ? e + "" : e, t);
+  var a = (s, e, t) => q(s, typeof e != "symbol" ? e + "" : e, t);
   var B = Object.defineProperty;
   var N = (s, e, t) => e in s ? B(s, e, { enumerable: true, configurable: true, writable: true, value: t }) : s[e] = t;
-  var h = (s, e, t) => N(s, typeof e != "symbol" ? e + "" : e, t);
+  var l = (s, e, t) => N(s, typeof e != "symbol" ? e + "" : e, t);
   var J = "bottom";
   var Q = ({ reference: s, popper: e }) => {
     if (!s || !e)
@@ -33,8 +33,8 @@
   var ee = (s, e, t, n) => s <= n && t - s <= e;
   var te = (s, e, t, n) => t <= n && -s <= e;
   var ne = (s, e, t, n, o, i) => {
-    const r = o - t - i, a = t - n, m = t + i - n + (o - t - i), d = r >= 0 ? o - n : a >= 0 ? t - n : t;
-    return s() ? 0 : e() ? m : d;
+    const r = o - t - i, h = t - n, g = t + i - n + (o - t - i), d = r >= 0 ? o - n : h >= 0 ? t - n : t;
+    return s() ? 0 : e() ? g : d;
   };
   var se = (s, e, t, n) => s <= t && e - s - n >= s;
   var ie = (s, e) => s >= e;
@@ -46,27 +46,27 @@
     refHeight: o,
     popperWidth: i,
     popperHeight: r,
-    windowHeight: a,
-    windowWidth: m,
+    windowHeight: h,
+    windowWidth: g,
     offsetDistance: d
   }) => {
-    const c = m - n - e, f = n, v = a - t - o, g = t, w = () => _(
-      () => te(t, o, r, a),
-      () => ee(t, o, r, a),
+    const c = g - n - e, f = n, v = h - t - o, m = t, w = () => _(
+      () => te(t, o, r, h),
+      () => ee(t, o, r, h),
       t,
       o,
       r
     ), y = () => ne(
-      () => se(n, m, i, e),
+      () => se(n, g, i, e),
       () => ie(n, i),
       n,
       i,
-      m,
+      g,
       e
-    ), H = () => Y(i, e, n, m) ? n + e / 2 - i / 2 : y(), C = () => Z(r, o, t, a) ? t + o / 2 - r / 2 : w(), T = () => n + i <= m ? n : y(), O = () => n + e - i >= 0 ? n + e - i : y(), L = () => t + r <= a ? t : w(), G = () => t + o - r >= 0 ? t + o - r : w();
+    ), H = () => Y(i, e, n, g) ? n + e / 2 - i / 2 : y(), T = () => Z(r, o, t, h) ? t + o / 2 - r / 2 : w(), C = () => n + i <= g ? n : y(), O = () => n + e - i >= 0 ? n + e - i : y(), L = () => t + r <= h ? t : w(), G = () => t + o - r >= 0 ? t + o - r : w();
     let u = 0, E = 0;
-    const M = t - r - d, k = t + o + d, I = n - i - d, D = n + e + d, P = g >= r + d, F = v >= r + d, R = f >= i + d, $ = c >= i + d;
-    switch (s.startsWith("top") ? E = P ? M : F ? k : Math.max(M, k) : s.startsWith("bottom") ? E = F ? k : P ? M : Math.max(k) : s.startsWith("left") ? u = R ? I : $ ? D : Math.max(I, D) : s.startsWith("right") && (u = $ ? D : R ? I : Math.max(D, I)), s) {
+    const M = t - r - d, k = t + o + d, D = n - i - d, I = n + e + d, P = m >= r + d, F = v >= r + d, R = f >= i + d, $ = c >= i + d;
+    switch (s.startsWith("top") ? E = P ? M : F ? k : Math.max(M, k) : s.startsWith("bottom") ? E = F ? k : P ? M : Math.max(k) : s.startsWith("left") ? u = R ? D : $ ? I : Math.max(D, I) : s.startsWith("right") && (u = $ ? I : R ? D : Math.max(I, D)), s) {
       case "bottom":
       case "bottom-middle":
       case "top":
@@ -77,11 +77,11 @@
       case "left-middle":
       case "right":
       case "right-middle":
-        E = C();
+        E = T();
         break;
       case "bottom-start":
       case "top-start":
-        u = T();
+        u = C();
         break;
       case "bottom-end":
       case "top-end":
@@ -132,15 +132,15 @@
       }), p(this, "initPlacement", () => {
         var c;
         this.validateElements(), this.setInitialStyles();
-        const f = window.innerWidth, v = window.innerHeight, { popperHeight: g, popperWidth: w, refHeight: y, refWidth: H, refLeft: C, refTop: T } = Q({ reference: this.reference, popper: this.popper }), { x: O, y: L } = oe(
+        const f = window.innerWidth, v = window.innerHeight, { popperHeight: m, popperWidth: w, refHeight: y, refWidth: H, refLeft: T, refTop: C } = Q({ reference: this.reference, popper: this.popper }), { x: O, y: L } = oe(
           {
             placement: this.placement,
             refWidth: H,
-            refTop: T,
-            refLeft: C,
+            refTop: C,
+            refLeft: T,
             popperWidth: w,
             refHeight: y,
-            popperHeight: g,
+            popperHeight: m,
             windowHeight: v,
             windowWidth: f,
             offsetDistance: this.offsetDistance
@@ -162,7 +162,7 @@
         offsetDistance: o = 10,
         placement: i = J,
         eventEffect: r = {},
-        onUpdate: a
+        onUpdate: h
       } = n;
       if (!(e instanceof HTMLElement))
         throw new Error("Invalid HTMLElement for Reference Element");
@@ -170,8 +170,8 @@
         throw new Error("Invalid HTMLElement for Popper");
       if (n.offsetDistance && typeof n.offsetDistance != "number")
         throw new Error("OffsetDistance must be a number");
-      const { disableOnResize: m, disableOnScroll: d } = r;
-      this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = i, this.disableOnResize = m || false, this.disableOnScroll = d || false, this.onUpdate = a;
+      const { disableOnResize: g, disableOnScroll: d } = r;
+      this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = i, this.disableOnResize = g || false, this.disableOnScroll = d || false, this.onUpdate = h;
     }
     /**
      * Updates popper configuration and recalculates position
@@ -197,10 +197,10 @@
   }) => {
     const o = getComputedStyle(s), i = o.transition;
     if (i !== "none" && i !== "" && !n.includes(i)) {
-      const r = "transitionend", a = () => {
-        s.removeEventListener(r, a), e();
+      const r = "transitionend", h = () => {
+        s.removeEventListener(r, h), e();
       };
-      s.addEventListener(r, a, { once: true });
+      s.addEventListener(r, h, { once: true });
     } else
       e();
   };
@@ -216,10 +216,11 @@
     });
   };
   var b = ({ state: s, trigger: e, popper: t }) => {
+    const n = s === "open";
     A(t, {
       "data-state": s
     }), A(e, {
-      "aria-expanded": `${s}`
+      "aria-expanded": `${n}`
     });
   };
   var ce = class {
@@ -229,43 +230,47 @@
      * @param {string | HTMLElement} params.trigger - The trigger element selector or HTMLElement
      * @param {string | HTMLElement} params.content - The content element selector or HTMLElement
      * @param {OverlayOptions} [params.options] - Configuration options for the overlay
-     * @throws {Error} When trigger or content elements are invalid
      */
     constructor({ trigger: e, content: t, options: n = {} }) {
-      h(this, "triggerElement"), h(this, "contentElement"), h(this, "triggerStrategy"), h(this, "placement"), h(this, "offsetDistance"), h(this, "preventFromCloseOutside"), h(this, "preventFromCloseInside"), h(this, "options"), h(this, "defaultState"), h(this, "popper"), h(this, "eventEffect"), h(this, "getElement", (i) => typeof i == "string" ? ae(i) : i instanceof HTMLElement ? i : void 0), h(this, "handleDocumentClick", (i) => {
+      l(this, "triggerElement"), l(this, "contentElement"), l(this, "triggerStrategy"), l(this, "placement"), l(this, "offsetDistance"), l(this, "preventFromCloseOutside"), l(this, "preventFromCloseInside"), l(this, "options"), l(this, "defaultState"), l(this, "popper"), l(this, "eventEffect"), l(this, "getElement", (i) => typeof i == "string" ? ae(i) : i instanceof HTMLElement ? i : void 0), l(this, "handleDocumentClick", (i) => {
         this.contentElement.getAttribute("data-state") === "open" && (!this.triggerElement.contains(i.target) && !this.preventFromCloseInside && !this.preventFromCloseOutside ? this.hide() : !this.triggerElement.contains(i.target) && !this.contentElement.contains(i.target) && !this.preventFromCloseOutside ? this.hide() : !this.triggerElement.contains(i.target) && !this.contentElement.contains(i.target) && !this.preventFromCloseOutside ? this.hide() : !this.triggerElement.contains(i.target) && this.contentElement.contains(i.target) && !this.preventFromCloseInside && this.hide());
-      }), h(this, "handleKeyDown", (i) => {
+      }), l(this, "handleKeyDown", (i) => {
         i.preventDefault(), this.triggerStrategy !== "hover" && i.key === "Escape" && this.contentElement.getAttribute("data-state") === "open" && (this.preventFromCloseOutside || this.hide());
-      }), h(this, "toggleStateOnClick", () => {
+      }), l(this, "toggleStateOnClick", () => {
         (this.contentElement.dataset.state || "close") === "close" ? (this.show(), this.triggerStrategy === "hover" && this.addEventOnMouseEnter()) : this.hide();
-      }), h(this, "hideOnMouseLeaseTrigger", () => {
+      }), l(this, "hideOnMouseLeaseTrigger", () => {
         setTimeout(() => {
           this.contentElement.matches(":hover") || this.hide();
         }, 150);
-      }), h(this, "hideOnMouseLeave", () => {
+      }), l(this, "hideOnMouseLeave", () => {
         setTimeout(() => {
           this.triggerElement.matches(":hover") || this.hide();
         }, 150);
-      }), h(this, "addEventOnMouseEnter", () => {
+      }), l(this, "addEventOnMouseEnter", () => {
         this.triggerElement.addEventListener("mouseleave", this.hideOnMouseLeaseTrigger), this.contentElement.addEventListener("mouseleave", this.hideOnMouseLeave);
-      }), h(this, "showOnMouseEnter", () => {
+      }), l(this, "showOnMouseEnter", () => {
         this.show(), this.addEventOnMouseEnter();
-      }), h(this, "setShowOptions", ({ placement: i, offsetDistance: r }) => {
-        var a, m, d, c;
+      }), l(this, "setShowOptions", ({ placement: i, offsetDistance: r }) => {
+        var h, g, d, c;
         this.popper.setOptions({
           placement: i,
           offsetDistance: r
-        }), document.addEventListener("keydown", this.handleKeyDown), document.addEventListener("click", this.handleDocumentClick), (m = (a = this.options).beforeShow) == null || m.call(a), b({
+        }), document.addEventListener("keydown", this.handleKeyDown), document.addEventListener("click", this.handleDocumentClick), (g = (h = this.options).beforeShow) == null || g.call(h), b({
           state: "open",
           popper: this.contentElement,
           trigger: this.triggerElement
         }), this.onToggleState(false), (c = (d = this.options).onShow) == null || c.call(d);
-      }), h(this, "setPopperOptions", ({ placement: i, offsetDistance: r }) => {
+      }), l(this, "setPopperOptions", ({ placement: i, offsetDistance: r }) => {
         this.popper.setOptions({
           placement: i,
-          offsetDistance: r
+          offsetDistance: r || this.offsetDistance
         });
-      }), h(this, "cleanup", () => {
+      }), l(this, "setPopperTrigger", (i, r) => {
+        this.cleanup(), this.popper.setOptions({
+          placement: r.placement || this.placement,
+          offsetDistance: r.offsetDistance || this.offsetDistance
+        }), this.triggerElement = i, this.triggerElement.addEventListener("click", this.toggleStateOnClick), this.triggerStrategy === "hover" && this.triggerElement.addEventListener("mouseenter", this.showOnMouseEnter);
+      }), l(this, "cleanup", () => {
         this.triggerElement.removeEventListener("click", this.toggleStateOnClick), this.triggerStrategy === "hover" && this.triggerElement.removeEventListener("mouseenter", this.showOnMouseEnter);
       });
       var o;
@@ -334,32 +339,32 @@
   var de = (s) => typeof s == "string" ? W(s) : s;
   var pe = ({ containerElement: s, targetChildren: e = "a:not([disabled]), button:not([disabled])", direction: t }) => {
     let n = false;
-    const o = de(s) || document.body, i = typeof e == "string" ? U(e, o) : e, r = (a) => {
-      if (a.preventDefault(), o.focus(), i.length === 0)
+    const o = de(s) || document.body, i = typeof e == "string" ? U(e, o) : e, r = (h) => {
+      if (h.preventDefault(), o.focus(), i.length === 0)
         return;
-      const m = a.key, d = document.activeElement;
-      let c = i.findIndex((g) => g === d);
+      const g = h.key, d = document.activeElement;
+      let c = i.findIndex((m) => m === d);
       if (c === -1) {
-        m === "ArrowUp" || m === "ArrowLeft" ? i[i.length - 1].focus() : i[0].focus();
+        g === "ArrowUp" || g === "ArrowLeft" ? i[i.length - 1].focus() : i[0].focus();
         return;
       }
-      const f = (g) => g > 0 ? g - 1 : i.length - 1, v = (g) => g < i.length - 1 ? g + 1 : 0;
-      switch (m) {
+      const f = (m) => m > 0 ? m - 1 : i.length - 1, v = (m) => m < i.length - 1 ? m + 1 : 0;
+      switch (g) {
         case "ArrowDown":
-          a.preventDefault(), c = v(c);
+          h.preventDefault(), c = v(c);
           break;
         case "ArrowRight":
           break;
         case "ArrowUp":
-          a.preventDefault(), c = f(c);
+          h.preventDefault(), c = f(c);
           break;
         case "ArrowLeft":
           break;
         case "Home":
-          a.preventDefault(), c = 0;
+          h.preventDefault(), c = 0;
           break;
         case "End":
-          a.preventDefault(), c = i.length - 1;
+          h.preventDefault(), c = i.length - 1;
           break;
         default:
           return;
@@ -406,49 +411,55 @@
      * @throws {Error} If provided elements are not valid HTMLElements
      */
     constructor(e, t = {}) {
-      l(this, "triggerElement");
-      l(this, "contentElement");
-      l(this, "options");
-      l(this, "OverlayInstance");
-      l(this, "navigationKeys");
-      l(this, "triggerStrategy");
-      l(this, "placement");
-      l(this, "offsetDistance");
-      l(this, "preventFromCloseOutside");
-      l(this, "preventFromCloseInside");
-      l(this, "defaultState");
-      l(this, "onToggle", ({ isHidden: e2 }) => {
+      a(this, "triggerElement");
+      a(this, "contentElement");
+      a(this, "options");
+      a(this, "OverlayInstance");
+      a(this, "navigationKeys");
+      a(this, "triggerStrategy");
+      a(this, "placement");
+      a(this, "offsetDistance");
+      a(this, "preventFromCloseOutside");
+      a(this, "preventFromCloseInside");
+      a(this, "defaultState");
+      a(this, "onToggle", ({ isHidden: e2 }) => {
         var t2, n2;
         (n2 = (t2 = this.options).onToggle) == null || n2.call(t2, { isHidden: e2 });
       });
-      l(this, "beforeShow", () => {
+      a(this, "beforeShow", () => {
         this.contentElement.focus(), this.navigationKeys.make();
       });
-      l(this, "beforeHide", () => {
+      a(this, "beforeHide", () => {
         this.contentElement.blur(), this.navigationKeys.destroy();
       });
-      l(this, "onShow", () => {
+      a(this, "onShow", () => {
         var e2, t2;
         K(this.contentElement, "dropdown-show", {
           isHidden: false
         }), (t2 = (e2 = this.options).onShow) == null || t2.call(e2);
       });
-      l(this, "onHide", () => {
+      a(this, "onHide", () => {
         var e2, t2;
         K(this.contentElement, "dropdown-hide", {
           isHidden: true
         }), (t2 = (e2 = this.options).onHide) == null || t2.call(e2);
       });
-      l(this, "show", () => {
+      a(this, "show", () => {
         this.OverlayInstance.show();
       });
-      l(this, "hide", () => {
+      a(this, "hide", () => {
         this.OverlayInstance.hide();
       });
-      l(this, "setShowOptions", ({ placement: e2, offsetDistance: t2 }) => {
+      a(this, "setShowOptions", ({ placement: e2, offsetDistance: t2 }) => {
         this.OverlayInstance.setShowOptions({ placement: e2, offsetDistance: t2 });
       });
-      l(this, "cleanup", () => {
+      a(this, "setOptions", ({ placement: e2, offsetDistance: t2 }) => {
+        this.OverlayInstance.setPopperOptions({ placement: e2, offsetDistance: t2 });
+      });
+      a(this, "setPopperTrigger", (e2, t2) => {
+        this.OverlayInstance.setPopperTrigger(e2, t2);
+      });
+      a(this, "cleanup", () => {
         this.OverlayInstance.cleanup(), x.removeInstance("dropdown", this.contentElement);
       });
       const n = typeof e == "string" ? W(e) : e;
@@ -500,7 +511,7 @@
       new S2(e, t);
     }
   };
-  l(S, "autoInit", (e = "[data-fx-dropdown]") => {
+  a(S, "autoInit", (e = "[data-fx-dropdown]") => {
     const t = U(e);
     for (const n of t)
       new S(n);

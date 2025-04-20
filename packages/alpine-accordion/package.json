@@ -45,6 +45,6 @@
     "dist"
   ],
   "dependencies": {
-    "@flexilla/accordion": "^2.1.1"
+    "@flexilla/accordion": "^2.2.0"
   }
 }

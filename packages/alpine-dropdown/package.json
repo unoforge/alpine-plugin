@@ -58,6 +58,6 @@
     "Flexilla"
   ],
   "dependencies": {
-    "@flexilla/dropdown": "^2.1.0"
+    "@flexilla/dropdown": "^2.1.3"
   }
 }

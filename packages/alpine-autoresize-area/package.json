@@ -56,5 +56,8 @@
     "intercative component",
     "Flexilla",
     "AutoResize"
-  ]
+  ],
+  "dependencies": {
+    "@flexilla/auto-resize-area": "^2.0.11"
+  }
 }
