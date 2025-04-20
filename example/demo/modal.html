@@ -89,10 +89,10 @@
                         class="bg-neutral-800 text-white px-4 py-2 rounded-lg text-sm w-max">
                         DefaultModal
                     </button>
-                    <div x-data data-fx-modal x-modal data-modal-test-1 aria-hidden="true" data-modal-id="modal-default"
-                        data-modal-overlay="inset-0 fixed bg-gray-800/70 backdrop-filter backdrop-blur-3xl ease-linear duration-300 transition-all data-[state=close]:opacity-0 data-[state=close]:invisible"
-                        class="inset-0 justify-center items-start hidden data-[state=open]:flex p-4 fixed wscreen h-screen top-0 left-0">
-                        <div data-modal-content @click.stop
+                    <dialog x-data data-fx-modal x-modal data-modal-test-1 aria-hidden="true" data-modal-id="modal-default"
+                        data-modal-overlay="inset-0 fixed bg-gray-800/20 ease-linear duration-300 transition-all data-[state=close]:opacity-0 data-[state=close]:invisible"
+                        class="inset-0 w-screen h-screen justify-center items-start hidden data-[state=open]:flex p-4 fixed top-0 left-0 bg-transparent">
+                        <div data-modal-content 
                             class="bg-white rounded-lg overflow-hidden w-full max-w-2xl flex flex-col ease-linear transition-all duration-300 absolute top-4 z-[500]">
                             <div
                                 class="border-b border-b-gray-100 dark:border-b-gray-900 p-4 flex justify-between items-center">
@@ -129,7 +129,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </dialog>
                 </div>
             </div>
         </div>

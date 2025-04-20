@@ -11,6 +11,13 @@ function Modal(Alpine) {
             );
             return;
         }
+        if(!(el instanceof HTMLDialogElement)) {
+            console.error(
+                "❌ x-modal must be used only on an HTMLDialogElement:",
+                el
+            );
+            return;
+        }
         const content = el.querySelector("[data-modal-content]");
         if (!content) {
             console.error(
@@ -20,9 +27,6 @@ function Modal(Alpine) {
             return;
         }
 
-        const trigger = document.querySelector(
-            `[data-modal-trigger][data-modal-id="${modalId}"]`
-        );
         const modalInstance = new FlexillaModal(el, {
             dispatchEventToDocument: false,
         });
@@ -32,24 +36,14 @@ function Modal(Alpine) {
 
         Alpine.store("modals")[modalId] = modalInstance;
 
-        const showModal = () => {
-            modalInstance.showModal();
-        };
-        const hideModal = () => {
-            modalInstance.hideModal();
-        };
+        const showModal = () => modalInstance.showModal();
+        const hideModal = () => modalInstance.hideModal();
         document.addEventListener(`modal:${modalId}:open`, showModal);
         document.addEventListener(`modal:${modalId}:close`, hideModal);
-        if (trigger instanceof HTMLElement) {
-            trigger.addEventListener("click", showModal);
-        }
 
         cleanup(() => {
             modalInstance.cleanup();
             delete Alpine.store("modals")[modalId];
-            if (trigger instanceof HTMLElement) {
-                trigger.removeEventListener("click", showModal);
-            }
             document.removeEventListener(`modal:${modalId}:open`, showModal);
             document.removeEventListener(`modal:${modalId}:close`, hideModal);
         });
