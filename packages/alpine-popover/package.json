@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-popover",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "AlpineJS plugin for adding Popover functionality to your AlpineJS components",
   "type": "module",
   "private": false,

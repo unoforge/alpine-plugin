@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-accordion",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple AlpineJS plugin for autosizing textareas",
   "type": "module",
   "private": false,
