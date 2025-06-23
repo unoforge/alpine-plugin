@@ -29,9 +29,9 @@ var q = (s, e, t) => e in s ? j(s, e, { enumerable: true, configurable: true, wr
 var a = (s, e, t) => q(s, typeof e != "symbol" ? e + "" : e, t);
 var B = Object.defineProperty;
 var N = (s, e, t) => e in s ? B(s, e, { enumerable: true, configurable: true, writable: true, value: t }) : s[e] = t;
-var l = (s, e, t) => N(s, typeof e != "symbol" ? e + "" : e, t);
-var J = "bottom";
-var Q = ({ reference: s, popper: e }) => {
+var d = (s, e, t) => N(s, typeof e != "symbol" ? e + "" : e, t);
+var V = "bottom";
+var X = ({ reference: s, popper: e }) => {
   if (!s || !e)
     throw new Error("Reference or popper element is null or undefined");
   const t = /* @__PURE__ */ new WeakMap(), n = (r) => (t.has(r) || t.set(r, r.getBoundingClientRect()), t.get(r)), o = n(e), i = n(s);
@@ -45,24 +45,21 @@ var Q = ({ reference: s, popper: e }) => {
     refRight: i.right
   };
 };
-var V = Object.defineProperty;
-var X = (s, e, t) => e in s ? V(s, e, { enumerable: true, configurable: true, writable: true, value: t }) : s[e] = t;
-var p = (s, e, t) => X(s, typeof e != "symbol" ? e + "" : e, t);
 var Y = (s, e, t, n) => {
   const o = t, i = n - (t + e);
   return o >= (s - e) / 2 && i >= (s - e) / 2;
 };
-var Z = (s, e, t, n) => (s - e) / 2 <= t && t + s / 2 + e / 2 <= n;
-var _ = (s, e, t, n, o) => t > o - n ? e() ? window.innerHeight - o : t - o : s() ? 0 : t + n;
-var ee = (s, e, t, n) => s <= n && t - s <= e;
-var te = (s, e, t, n) => t <= n && -s <= e;
-var ne = (s, e, t, n, o, i) => {
-  const r = o - t - i, h = t - n, g = t + i - n + (o - t - i), d = r >= 0 ? o - n : h >= 0 ? t - n : t;
-  return s() ? 0 : e() ? g : d;
+var J = (s, e, t, n) => (s - e) / 2 <= t && t + s / 2 + e / 2 <= n;
+var Q = (s, e, t, n, o) => t > o - n ? e() ? window.innerHeight - o : t - o : s() ? 0 : t + n;
+var Z = (s, e, t, n) => s <= n && t - s <= e;
+var _ = (s, e, t, n) => t <= n && -s <= e;
+var ee = (s, e, t, n, o, i) => {
+  const r = o - t - i, h = t - n, g = t + i - n + (o - t - i), p = r >= 0 ? o - n : h >= 0 ? t - n : t;
+  return s() ? 0 : e() ? g : p;
 };
-var se = (s, e, t, n) => s <= t && e - s - n >= s;
-var ie = (s, e) => s >= e;
-var oe = ({
+var te = (s, e, t, n) => s <= t && e - s - n >= s;
+var ne = (s, e) => s >= e;
+var se = ({
   placement: s,
   refWidth: e,
   refTop: t,
@@ -72,25 +69,25 @@ var oe = ({
   popperHeight: r,
   windowHeight: h,
   windowWidth: g,
-  offsetDistance: d
+  offsetDistance: p
 }) => {
-  const c = g - n - e, f = n, v = h - t - o, m = t, w = () => _(
-    () => te(t, o, r, h),
-    () => ee(t, o, r, h),
+  const c = g - n - e, f = n, v = h - t - o, m = t, w = () => Q(
+    () => _(t, o, r, h),
+    () => Z(t, o, r, h),
     t,
     o,
     r
-  ), y = () => ne(
-    () => se(n, g, i, e),
-    () => ie(n, i),
+  ), y = () => ee(
+    () => te(n, g, i, e),
+    () => ne(n, i),
     n,
     i,
     g,
     e
-  ), H = () => Y(i, e, n, g) ? n + e / 2 - i / 2 : y(), T = () => Z(r, o, t, h) ? t + o / 2 - r / 2 : w(), C = () => n + i <= g ? n : y(), O = () => n + e - i >= 0 ? n + e - i : y(), L = () => t + r <= h ? t : w(), G = () => t + o - r >= 0 ? t + o - r : w();
+  ), H = () => Y(i, e, n, g) ? n + e / 2 - i / 2 : y(), T = () => J(r, o, t, h) ? t + o / 2 - r / 2 : w(), C = () => n + i <= g ? n : y(), O = () => n + e - i >= 0 ? n + e - i : y(), L = () => t + r <= h ? t : w(), G = () => t + o - r >= 0 ? t + o - r : w();
   let u = 0, E = 0;
-  const M = t - r - d, k = t + o + d, D = n - i - d, I = n + e + d, P = m >= r + d, F = v >= r + d, R = f >= i + d, $ = c >= i + d;
-  switch (s.startsWith("top") ? E = P ? M : F ? k : Math.max(M, k) : s.startsWith("bottom") ? E = F ? k : P ? M : Math.max(k) : s.startsWith("left") ? u = R ? D : $ ? I : Math.max(D, I) : s.startsWith("right") && (u = $ ? I : R ? D : Math.max(I, D)), s) {
+  const M = t - r - p, k = t + o + p, D = n - i - p, I = n + e + p, W = m >= r + p, F = v >= r + p, R = f >= i + p, $ = c >= i + p;
+  switch (s.startsWith("top") ? E = W ? M : F ? k : Math.max(M, k) : s.startsWith("bottom") ? E = F ? k : W ? M : Math.max(k) : s.startsWith("left") ? u = R ? D : $ ? I : Math.max(D, I) : s.startsWith("right") && (u = $ ? I : R ? D : Math.max(I, D)), s) {
     case "bottom":
     case "bottom-middle":
     case "top":
@@ -122,7 +119,7 @@ var oe = ({
   }
   return { x: u, y: E };
 };
-var re = class {
+var ie = class {
   /**
    * Flexilla Popper 
    * @param reference 
@@ -142,21 +139,21 @@ var re = class {
    * @param {Function} [options.onUpdate] - Callback function when position updates
    */
   constructor(e, t, n = {}) {
-    p(this, "reference"), p(this, "popper"), p(this, "offsetDistance"), p(this, "placement"), p(this, "disableOnResize"), p(this, "disableOnScroll"), p(this, "onUpdate"), p(this, "isWindowEventsRegistered"), p(this, "validateElements", () => {
+    d(this, "reference"), d(this, "popper"), d(this, "offsetDistance"), d(this, "placement"), d(this, "disableOnResize"), d(this, "disableOnScroll"), d(this, "onUpdate"), d(this, "isWindowEventsRegistered"), d(this, "validateElements", () => {
       if (!(this.reference instanceof HTMLElement))
         throw new Error("Invalid HTMLElement for Reference Element");
       if (!(this.popper instanceof HTMLElement))
         throw new Error("Invalid HTMLElement for Popper");
       if (typeof this.offsetDistance != "number")
         throw new Error("OffsetDistance must be a number");
-    }), p(this, "setPopperStyleProperty", (c, f) => {
+    }), d(this, "setPopperStyleProperty", (c, f) => {
       this.popper.style.setProperty("--fx-popper-placement-x", `${c}px`), this.popper.style.setProperty("--fx-popper-placement-y", `${f}px`);
-    }), p(this, "setInitialStyles", () => {
+    }), d(this, "setInitialStyles", () => {
       this.popper.style.setProperty("--fx-popper-placement-x", ""), this.popper.style.setProperty("--fx-popper-placement-y", "");
-    }), p(this, "initPlacement", () => {
+    }), d(this, "initPlacement", () => {
       var c;
       this.validateElements(), this.setInitialStyles();
-      const f = window.innerWidth, v = window.innerHeight, { popperHeight: m, popperWidth: w, refHeight: y, refWidth: H, refLeft: T, refTop: C } = Q({ reference: this.reference, popper: this.popper }), { x: O, y: L } = oe(
+      const f = window.innerWidth, v = window.innerHeight, { popperHeight: m, popperWidth: w, refHeight: y, refWidth: H, refLeft: T, refTop: C } = X({ reference: this.reference, popper: this.popper }), { x: O, y: L } = se(
         {
           placement: this.placement,
           refWidth: H,
@@ -171,20 +168,20 @@ var re = class {
         }
       );
       this.setPopperStyleProperty(O, L), (c = this.onUpdate) == null || c.call(this, { x: O, y: L, placement: this.placement });
-    }), p(this, "removeWindowEvents", () => {
+    }), d(this, "removeWindowEvents", () => {
       this.isWindowEventsRegistered && (!this.disableOnResize && window.removeEventListener("resize", this.updatePosition), !this.disableOnScroll && window.removeEventListener("scroll", this.updatePosition), this.isWindowEventsRegistered = false);
-    }), p(this, "attachWindowEvent", () => {
+    }), d(this, "attachWindowEvent", () => {
       this.isWindowEventsRegistered && this.removeWindowEvents(), this.disableOnResize || window.addEventListener("resize", this.updatePosition), this.disableOnScroll || window.addEventListener("scroll", this.updatePosition), this.isWindowEventsRegistered = true;
-    }), p(this, "resetPosition", () => {
+    }), d(this, "resetPosition", () => {
       this.setInitialStyles();
-    }), p(this, "updatePosition", () => {
+    }), d(this, "updatePosition", () => {
       this.initPlacement(), this.attachWindowEvent();
-    }), p(this, "cleanupEvents", () => {
+    }), d(this, "cleanupEvents", () => {
       this.setInitialStyles(), this.removeWindowEvents();
     });
     const {
       offsetDistance: o = 10,
-      placement: i = J,
+      placement: i = V,
       eventEffect: r = {},
       onUpdate: h
     } = n;
@@ -194,8 +191,8 @@ var re = class {
       throw new Error("Invalid HTMLElement for Popper");
     if (n.offsetDistance && typeof n.offsetDistance != "number")
       throw new Error("OffsetDistance must be a number");
-    const { disableOnResize: g, disableOnScroll: d } = r;
-    this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = i, this.disableOnResize = g || false, this.disableOnScroll = d || false, this.onUpdate = h;
+    const { disableOnResize: g, disableOnScroll: p } = r;
+    this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = i, this.disableOnResize = g || false, this.disableOnScroll = p || false, this.onUpdate = h;
   }
   /**
    * Updates popper configuration and recalculates position
@@ -208,6 +205,9 @@ var re = class {
     this.placement = e, this.offsetDistance = t || this.offsetDistance, this.initPlacement(), this.attachWindowEvent();
   }
 };
+var oe = Object.defineProperty;
+var re = (s, e, t) => e in s ? oe(s, e, { enumerable: true, configurable: true, writable: true, value: t }) : s[e] = t;
+var l = (s, e, t) => re(s, typeof e != "symbol" ? e + "" : e, t);
 var ae = (s, e = document.body) => e.querySelector(s);
 var A = (s, e) => {
   for (const [t, n] of Object.entries(e))
@@ -275,7 +275,7 @@ var ce = class {
     }), l(this, "showOnMouseEnter", () => {
       this.show(), this.addEventOnMouseEnter();
     }), l(this, "setShowOptions", ({ placement: i, offsetDistance: r }) => {
-      var h, g, d, c;
+      var h, g, p, c;
       this.popper.setOptions({
         placement: i,
         offsetDistance: r
@@ -283,7 +283,7 @@ var ce = class {
         state: "open",
         popper: this.contentElement,
         trigger: this.triggerElement
-      }), this.onToggleState(false), (c = (d = this.options).onShow) == null || c.call(d);
+      }), this.onToggleState(false), (c = (p = this.options).onShow) == null || c.call(p);
     }), l(this, "setPopperOptions", ({ placement: i, offsetDistance: r }) => {
       this.popper.setOptions({
         placement: i,
@@ -302,7 +302,7 @@ var ce = class {
       throw new Error("Trigger element must be a valid HTML element");
     if (!(this.contentElement instanceof HTMLElement))
       throw new Error("Content element must be a valid HTML element");
-    this.options = n, this.triggerStrategy = this.options.triggerStrategy || "click", this.placement = this.options.placement || "bottom", this.offsetDistance = this.options.offsetDistance || 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.options.preventCloseFromInside || false, this.defaultState = this.options.defaultState || "close", this.eventEffect = (o = this.options.popper) == null ? void 0 : o.eventEffect, this.popper = new re(
+    this.options = n, this.triggerStrategy = this.options.triggerStrategy || "click", this.placement = this.options.placement || "bottom", this.offsetDistance = this.options.offsetDistance || 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.options.preventCloseFromInside || false, this.defaultState = this.options.defaultState || "close", this.eventEffect = (o = this.options.popper) == null ? void 0 : o.eventEffect, this.popper = new ie(
       this.triggerElement,
       this.contentElement,
       {
@@ -358,16 +358,16 @@ var ce = class {
     }), this.triggerElement.addEventListener("click", this.toggleStateOnClick), this.triggerStrategy === "hover" && this.triggerElement.addEventListener("mouseenter", this.showOnMouseEnter);
   }
 };
-var W = (s, e = document.body) => e.querySelector(s);
+var P = (s, e = document.body) => e.querySelector(s);
 var U = (s, e = document.body) => Array.from(e.querySelectorAll(s));
-var de = (s) => typeof s == "string" ? W(s) : s;
-var pe = ({ containerElement: s, targetChildren: e = "a:not([disabled]), button:not([disabled])", direction: t }) => {
+var pe = (s) => typeof s == "string" ? P(s) : s;
+var de = ({ containerElement: s, targetChildren: e = "a:not([disabled]), button:not([disabled])", direction: t }) => {
   let n = false;
-  const o = de(s) || document.body, i = typeof e == "string" ? U(e, o) : e, r = (h) => {
+  const o = pe(s) || document.body, i = typeof e == "string" ? U(e, o) : e, r = (h) => {
     if (h.preventDefault(), o.focus(), i.length === 0)
       return;
-    const g = h.key, d = document.activeElement;
-    let c = i.findIndex((m) => m === d);
+    const g = h.key, p = document.activeElement;
+    let c = i.findIndex((m) => m === p);
     if (c === -1) {
       g === "ArrowUp" || g === "ArrowLeft" ? i[i.length - 1].focus() : i[0].focus();
       return;
@@ -393,7 +393,7 @@ var pe = ({ containerElement: s, targetChildren: e = "a:not([disabled]), button:
       default:
         return;
     }
-    i[c] !== d && i[c].focus();
+    i[c] !== p && i[c].focus();
   };
   return {
     make: () => {
@@ -404,7 +404,7 @@ var pe = ({ containerElement: s, targetChildren: e = "a:not([disabled]), button:
     }
   };
 };
-var K = (s, e, t) => {
+var z = (s, e, t) => {
   const n = new CustomEvent(e, { detail: t });
   s.dispatchEvent(n);
 };
@@ -458,13 +458,13 @@ var S = class S2 {
     });
     a(this, "onShow", () => {
       var e2, t2;
-      K(this.contentElement, "dropdown-show", {
+      z(this.contentElement, "dropdown-show", {
         isHidden: false
       }), (t2 = (e2 = this.options).onShow) == null || t2.call(e2);
     });
     a(this, "onHide", () => {
       var e2, t2;
-      K(this.contentElement, "dropdown-hide", {
+      z(this.contentElement, "dropdown-hide", {
         isHidden: true
       }), (t2 = (e2 = this.options).onHide) == null || t2.call(e2);
     });
@@ -486,7 +486,7 @@ var S = class S2 {
     a(this, "cleanup", () => {
       this.OverlayInstance.cleanup(), x.removeInstance("dropdown", this.contentElement);
     });
-    const n = typeof e == "string" ? W(e) : e;
+    const n = typeof e == "string" ? P(e) : e;
     if (!(n instanceof HTMLElement))
       throw new Error(
         "Invalid dropdown content element: Must provide either a valid HTMLElement or a selector string that resolves to an existing HTMLElement"
@@ -498,7 +498,7 @@ var S = class S2 {
     if (o)
       return o;
     const i = `[data-dropdown-trigger][data-dropdown-id=${this.contentElement.id}]`;
-    if (this.triggerElement = W(i), !(this.triggerElement instanceof HTMLElement))
+    if (this.triggerElement = P(i), !(this.triggerElement instanceof HTMLElement))
       throw new Error(`No valid trigger element found. Ensure a trigger element exists with attributes: data-dropdown-trigger and data-dropdown-id="${this.contentElement.id}"`);
     this.options = t, this.triggerStrategy = this.options.triggerStrategy || this.contentElement.dataset.triggerStrategy || "click", this.placement = this.options.placement || this.contentElement.dataset.placement || "bottom-start", this.offsetDistance = this.options.offsetDistance || parseInt(`${this.contentElement.dataset.offsetDistance}`) | 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || this.contentElement.hasAttribute("data-prevent-close-outside") || false, this.preventFromCloseInside = this.options.preventCloseFromInside || this.contentElement.hasAttribute("data-prevent-close-inside") || false, this.defaultState = this.options.defaultState || this.contentElement.dataset.defaultState || "close", this.OverlayInstance = new ce({
       trigger: this.triggerElement,
@@ -519,7 +519,7 @@ var S = class S2 {
         },
         popper: this.options.popper
       }
-    }), this.navigationKeys = pe({
+    }), this.navigationKeys = de({
       containerElement: this.contentElement,
       targetChildren: "a:not([disabled]), button:not([disabled])",
       direction: "up-down"
@@ -540,12 +540,12 @@ a(S, "autoInit", (e = "[data-fx-dropdown]") => {
   for (const n of t)
     new S(n);
 });
-var z = S;
+var K = S;
 
 // src/index.js
 function Dropdown(Alpine) {
   Alpine.directive("dropdown", (el, {}, { cleanup }) => {
-    const dropdown_ = new z(el);
+    const dropdown_ = new K(el);
     cleanup(() => {
       dropdown_.cleanup();
     });

@@ -1,18 +1,12 @@
 (() => {
   // ../../node_modules/@flexilla/popover/dist/popover.js
+  var U = Object.defineProperty;
+  var j = (i, e, t) => e in i ? U(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
+  var l = (i, e, t) => j(i, typeof e != "symbol" ? e + "" : e, t);
   var K = Object.defineProperty;
-  var U = (i, e, t) => e in i ? K(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
-  var h = (i, e, t) => U(i, typeof e != "symbol" ? e + "" : e, t);
-  var A = (i, e = document.body) => e.querySelector(i);
-  var j = (i, e = document.body) => Array.from(e.querySelectorAll(i));
-  var M = (i, e, t) => {
-    const s = new CustomEvent(e, { detail: t });
-    i.dispatchEvent(s);
-  };
-  var q = Object.defineProperty;
-  var B = (i, e, t) => e in i ? q(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
-  var a = (i, e, t) => B(i, typeof e != "symbol" ? e + "" : e, t);
-  var J = "bottom";
+  var q = (i, e, t) => e in i ? K(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
+  var p = (i, e, t) => q(i, typeof e != "symbol" ? e + "" : e, t);
+  var B = "bottom";
   var N = ({ reference: i, popper: e }) => {
     if (!i || !e)
       throw new Error("Reference or popper element is null or undefined");
@@ -27,24 +21,21 @@
       refRight: n.right
     };
   };
-  var Q = Object.defineProperty;
-  var V = (i, e, t) => e in i ? Q(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
-  var p = (i, e, t) => V(i, typeof e != "symbol" ? e + "" : e, t);
-  var X = (i, e, t, s) => {
+  var V = (i, e, t, s) => {
     const o = t, n = s - (t + e);
     return o >= (i - e) / 2 && n >= (i - e) / 2;
   };
-  var Y = (i, e, t, s) => (i - e) / 2 <= t && t + i / 2 + e / 2 <= s;
-  var Z = (i, e, t, s, o) => t > o - s ? e() ? window.innerHeight - o : t - o : i() ? 0 : t + s;
-  var _ = (i, e, t, s) => i <= s && t - i <= e;
-  var ee = (i, e, t, s) => t <= s && -i <= e;
-  var te = (i, e, t, s, o, n) => {
-    const r = o - t - n, l = t - s, d = t + n - s + (o - t - n), c = r >= 0 ? o - s : l >= 0 ? t - s : t;
+  var X = (i, e, t, s) => (i - e) / 2 <= t && t + i / 2 + e / 2 <= s;
+  var Y = (i, e, t, s, o) => t > o - s ? e() ? window.innerHeight - o : t - o : i() ? 0 : t + s;
+  var J = (i, e, t, s) => i <= s && t - i <= e;
+  var Q = (i, e, t, s) => t <= s && -i <= e;
+  var Z = (i, e, t, s, o, n) => {
+    const r = o - t - n, h = t - s, d = t + n - s + (o - t - n), c = r >= 0 ? o - s : h >= 0 ? t - s : t;
     return i() ? 0 : e() ? d : c;
   };
-  var se = (i, e, t, s) => i <= t && e - i - s >= i;
-  var ie = (i, e) => i >= e;
-  var ne = ({
+  var _ = (i, e, t, s) => i <= t && e - i - s >= i;
+  var ee = (i, e) => i >= e;
+  var te = ({
     placement: i,
     refWidth: e,
     refTop: t,
@@ -52,24 +43,24 @@
     refHeight: o,
     popperWidth: n,
     popperHeight: r,
-    windowHeight: l,
+    windowHeight: h,
     windowWidth: d,
     offsetDistance: c
   }) => {
-    const g = d - s - e, v = s, L = l - t - o, D = t, u = () => Z(
-      () => ee(t, o, r, l),
-      () => _(t, o, r, l),
+    const g = d - s - e, v = s, L = h - t - o, D = t, u = () => Y(
+      () => Q(t, o, r, h),
+      () => J(t, o, r, h),
       t,
       o,
       r
-    ), E = () => te(
-      () => se(s, d, n, e),
-      () => ie(s, n),
+    ), E = () => Z(
+      () => _(s, d, n, e),
+      () => ee(s, n),
       s,
       n,
       d,
       e
-    ), k = () => X(n, e, s, d) ? s + e / 2 - n / 2 : E(), C = () => Y(r, o, t, l) ? t + o / 2 - r / 2 : u(), P = () => s + n <= d ? s : E(), y = () => s + e - n >= 0 ? s + e - n : E(), b = () => t + r <= l ? t : u(), G = () => t + o - r >= 0 ? t + o - r : u();
+    ), k = () => V(n, e, s, d) ? s + e / 2 - n / 2 : E(), C = () => X(r, o, t, h) ? t + o / 2 - r / 2 : u(), P = () => s + n <= d ? s : E(), y = () => s + e - n >= 0 ? s + e - n : E(), b = () => t + r <= h ? t : u(), G = () => t + o - r >= 0 ? t + o - r : u();
     let m = 0, f = 0;
     const T = t - r - c, S = t + o + c, O = s - n - c, I = s + e + c, W = D >= r + c, F = L >= r + c, R = v >= n + c, $ = g >= n + c;
     switch (i.startsWith("top") ? f = W ? T : F ? S : Math.max(T, S) : i.startsWith("bottom") ? f = F ? S : W ? T : Math.max(S) : i.startsWith("left") ? m = R ? O : $ ? I : Math.max(O, I) : i.startsWith("right") && (m = $ ? I : R ? O : Math.max(I, O)), i) {
@@ -104,7 +95,7 @@
     }
     return { x: m, y: f };
   };
-  var oe = class {
+  var se = class {
     /**
      * Flexilla Popper 
      * @param reference 
@@ -138,7 +129,7 @@
       }), p(this, "initPlacement", () => {
         var g;
         this.validateElements(), this.setInitialStyles();
-        const v = window.innerWidth, L = window.innerHeight, { popperHeight: D, popperWidth: u, refHeight: E, refWidth: k, refLeft: C, refTop: P } = N({ reference: this.reference, popper: this.popper }), { x: y, y: b } = ne(
+        const v = window.innerWidth, L = window.innerHeight, { popperHeight: D, popperWidth: u, refHeight: E, refWidth: k, refLeft: C, refTop: P } = N({ reference: this.reference, popper: this.popper }), { x: y, y: b } = te(
           {
             placement: this.placement,
             refWidth: k,
@@ -166,9 +157,9 @@
       });
       const {
         offsetDistance: o = 10,
-        placement: n = J,
+        placement: n = B,
         eventEffect: r = {},
-        onUpdate: l
+        onUpdate: h
       } = s;
       if (!(e instanceof HTMLElement))
         throw new Error("Invalid HTMLElement for Reference Element");
@@ -177,7 +168,7 @@
       if (s.offsetDistance && typeof s.offsetDistance != "number")
         throw new Error("OffsetDistance must be a number");
       const { disableOnResize: d, disableOnScroll: c } = r;
-      this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = n, this.disableOnResize = d || false, this.disableOnScroll = c || false, this.onUpdate = l;
+      this.isWindowEventsRegistered = false, this.reference = e, this.popper = t, this.offsetDistance = o, this.placement = n, this.disableOnResize = d || false, this.disableOnScroll = c || false, this.onUpdate = h;
     }
     /**
      * Updates popper configuration and recalculates position
@@ -190,12 +181,15 @@
       this.placement = e, this.offsetDistance = t || this.offsetDistance, this.initPlacement(), this.attachWindowEvent();
     }
   };
-  var re = (i, e = document.body) => e.querySelector(i);
-  var z = (i, e) => {
+  var ie = Object.defineProperty;
+  var ne = (i, e, t) => e in i ? ie(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
+  var a = (i, e, t) => ne(i, typeof e != "symbol" ? e + "" : e, t);
+  var oe = (i, e = document.body) => e.querySelector(i);
+  var A = (i, e) => {
     for (const [t, s] of Object.entries(e))
       i.setAttribute(t, s);
   };
-  var ae = ({
+  var re = ({
     element: i,
     callback: e,
     type: t,
@@ -203,18 +197,18 @@
   }) => {
     const o = getComputedStyle(i), n = o.transition;
     if (n !== "none" && n !== "" && !s.includes(n)) {
-      const r = "transitionend", l = () => {
-        i.removeEventListener(r, l), e();
+      const r = "transitionend", h = () => {
+        i.removeEventListener(r, h), e();
       };
-      i.addEventListener(r, l, { once: true });
+      i.addEventListener(r, h, { once: true });
     } else
       e();
   };
-  var le = ({
+  var ae = ({
     element: i,
     callback: e
   }) => {
-    ae({
+    re({
       element: i,
       callback: e,
       type: "transition",
@@ -223,9 +217,9 @@
   };
   var w = ({ state: i, trigger: e, popper: t }) => {
     const s = i === "open";
-    z(t, {
+    A(t, {
       "data-state": i
-    }), z(e, {
+    }), A(e, {
       "aria-expanded": `${s}`
     });
   };
@@ -238,7 +232,7 @@
      * @param {OverlayOptions} [params.options] - Configuration options for the overlay
      */
     constructor({ trigger: e, content: t, options: s = {} }) {
-      a(this, "triggerElement"), a(this, "contentElement"), a(this, "triggerStrategy"), a(this, "placement"), a(this, "offsetDistance"), a(this, "preventFromCloseOutside"), a(this, "preventFromCloseInside"), a(this, "options"), a(this, "defaultState"), a(this, "popper"), a(this, "eventEffect"), a(this, "getElement", (n) => typeof n == "string" ? re(n) : n instanceof HTMLElement ? n : void 0), a(this, "handleDocumentClick", (n) => {
+      a(this, "triggerElement"), a(this, "contentElement"), a(this, "triggerStrategy"), a(this, "placement"), a(this, "offsetDistance"), a(this, "preventFromCloseOutside"), a(this, "preventFromCloseInside"), a(this, "options"), a(this, "defaultState"), a(this, "popper"), a(this, "eventEffect"), a(this, "getElement", (n) => typeof n == "string" ? oe(n) : n instanceof HTMLElement ? n : void 0), a(this, "handleDocumentClick", (n) => {
         this.contentElement.getAttribute("data-state") === "open" && (!this.triggerElement.contains(n.target) && !this.preventFromCloseInside && !this.preventFromCloseOutside ? this.hide() : !this.triggerElement.contains(n.target) && !this.contentElement.contains(n.target) && !this.preventFromCloseOutside ? this.hide() : !this.triggerElement.contains(n.target) && !this.contentElement.contains(n.target) && !this.preventFromCloseOutside ? this.hide() : !this.triggerElement.contains(n.target) && this.contentElement.contains(n.target) && !this.preventFromCloseInside && this.hide());
       }), a(this, "handleKeyDown", (n) => {
         n.preventDefault(), this.triggerStrategy !== "hover" && n.key === "Escape" && this.contentElement.getAttribute("data-state") === "open" && (this.preventFromCloseOutside || this.hide());
@@ -257,11 +251,11 @@
       }), a(this, "showOnMouseEnter", () => {
         this.show(), this.addEventOnMouseEnter();
       }), a(this, "setShowOptions", ({ placement: n, offsetDistance: r }) => {
-        var l, d, c, g;
+        var h, d, c, g;
         this.popper.setOptions({
           placement: n,
           offsetDistance: r
-        }), document.addEventListener("keydown", this.handleKeyDown), document.addEventListener("click", this.handleDocumentClick), (d = (l = this.options).beforeShow) == null || d.call(l), w({
+        }), document.addEventListener("keydown", this.handleKeyDown), document.addEventListener("click", this.handleDocumentClick), (d = (h = this.options).beforeShow) == null || d.call(h), w({
           state: "open",
           popper: this.contentElement,
           trigger: this.triggerElement
@@ -284,7 +278,7 @@
         throw new Error("Trigger element must be a valid HTML element");
       if (!(this.contentElement instanceof HTMLElement))
         throw new Error("Content element must be a valid HTML element");
-      this.options = s, this.triggerStrategy = this.options.triggerStrategy || "click", this.placement = this.options.placement || "bottom", this.offsetDistance = this.options.offsetDistance || 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.options.preventCloseFromInside || false, this.defaultState = this.options.defaultState || "close", this.eventEffect = (o = this.options.popper) == null ? void 0 : o.eventEffect, this.popper = new oe(
+      this.options = s, this.triggerStrategy = this.options.triggerStrategy || "click", this.placement = this.options.placement || "bottom", this.offsetDistance = this.options.offsetDistance || 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.options.preventCloseFromInside || false, this.defaultState = this.options.defaultState || "close", this.eventEffect = (o = this.options.popper) == null ? void 0 : o.eventEffect, this.popper = new se(
         this.triggerElement,
         this.contentElement,
         {
@@ -320,7 +314,7 @@
         state: "close",
         popper: this.contentElement,
         trigger: this.triggerElement
-      }), this.triggerStrategy === "click" && document.removeEventListener("click", this.handleDocumentClick), document.removeEventListener("keydown", this.handleKeyDown), this.triggerStrategy === "hover" && (this.triggerElement.removeEventListener("mouseleave", this.hideOnMouseLeaseTrigger), this.contentElement.removeEventListener("mouseleave", this.hideOnMouseLeave)), le({
+      }), this.triggerStrategy === "click" && document.removeEventListener("click", this.handleDocumentClick), document.removeEventListener("keydown", this.handleKeyDown), this.triggerStrategy === "hover" && (this.triggerElement.removeEventListener("mouseleave", this.hideOnMouseLeaseTrigger), this.contentElement.removeEventListener("mouseleave", this.hideOnMouseLeave)), ae({
         element: this.contentElement,
         callback: () => {
           var s, o;
@@ -339,6 +333,12 @@
         trigger: this.triggerElement
       }), this.triggerElement.addEventListener("click", this.toggleStateOnClick), this.triggerStrategy === "hover" && this.triggerElement.addEventListener("mouseenter", this.showOnMouseEnter);
     }
+  };
+  var z = (i, e = document.body) => e.querySelector(i);
+  var le = (i, e = document.body) => Array.from(e.querySelectorAll(i));
+  var M = (i, e, t) => {
+    const s = new CustomEvent(e, { detail: t });
+    i.dispatchEvent(s);
   };
   var H = class {
     static initGlobalRegistry() {
@@ -376,44 +376,44 @@
      * });
      */
     constructor(e, t = {}) {
-      h(this, "triggerElement");
-      h(this, "contentElement");
-      h(this, "options");
-      h(this, "PopoverInstance");
-      h(this, "triggerStrategy");
-      h(this, "placement");
-      h(this, "offsetDistance");
-      h(this, "preventFromCloseOutside");
-      h(this, "preventFromCloseInside");
-      h(this, "defaultState");
-      h(this, "setShowOptions", ({ placement: e2, offsetDistance: t2 }) => {
+      l(this, "triggerElement");
+      l(this, "contentElement");
+      l(this, "options");
+      l(this, "PopoverInstance");
+      l(this, "triggerStrategy");
+      l(this, "placement");
+      l(this, "offsetDistance");
+      l(this, "preventFromCloseOutside");
+      l(this, "preventFromCloseInside");
+      l(this, "defaultState");
+      l(this, "setShowOptions", ({ placement: e2, offsetDistance: t2 }) => {
         this.PopoverInstance.setShowOptions({ placement: e2, offsetDistance: t2 });
       });
-      h(this, "setOptions", ({ placement: e2, offsetDistance: t2 }) => {
+      l(this, "setOptions", ({ placement: e2, offsetDistance: t2 }) => {
         this.PopoverInstance.setPopperOptions({ placement: e2, offsetDistance: t2 });
       });
-      h(this, "setPopperTrigger", (e2, t2) => {
+      l(this, "setPopperTrigger", (e2, t2) => {
         this.PopoverInstance.setPopperTrigger(e2, t2);
       });
-      h(this, "show", () => {
+      l(this, "show", () => {
         this.PopoverInstance.show(), M(this.contentElement, "popover-show", {
           isHidden: false
         });
       });
-      h(this, "hide", () => {
+      l(this, "hide", () => {
         this.PopoverInstance.hide(), M(this.contentElement, "popover-hide", {
           isHidden: true
         });
       });
-      h(this, "cleanup", () => {
+      l(this, "cleanup", () => {
         this.PopoverInstance.cleanup(), H.removeInstance("popover", this.contentElement);
       });
-      const s = typeof e == "string" ? A(e) : e;
+      const s = typeof e == "string" ? z(e) : e;
       this.contentElement = s;
       const o = H.getInstance("popover", this.contentElement);
       if (o)
         return o;
-      this.triggerElement = A(`[data-popover-trigger][data-popover-id=${s.getAttribute("id")}]`), this.options = t, this.triggerStrategy = this.options.triggerStrategy || s.dataset.triggerStrategy || "click", this.placement = this.options.placement || s.dataset.placement || "bottom-middle", this.offsetDistance = this.options.offsetDistance || parseInt(`${s.dataset.offsetDistance}`) | 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || s.hasAttribute("data-prevent-close-outside") || false, this.preventFromCloseInside = this.options.preventCloseFromInside || s.hasAttribute("data-prevent-close-inside") || false, this.defaultState = this.options.defaultState || s.dataset.defaultState || "close", this.PopoverInstance = new he({
+      this.triggerElement = z(`[data-popover-trigger][data-popover-id=${s.getAttribute("id")}]`), this.options = t, this.triggerStrategy = this.options.triggerStrategy || s.dataset.triggerStrategy || "click", this.placement = this.options.placement || s.dataset.placement || "bottom-middle", this.offsetDistance = this.options.offsetDistance || parseInt(`${s.dataset.offsetDistance}`) | 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || s.hasAttribute("data-prevent-close-outside") || false, this.preventFromCloseInside = this.options.preventCloseFromInside || s.hasAttribute("data-prevent-close-inside") || false, this.defaultState = this.options.defaultState || s.dataset.defaultState || "close", this.PopoverInstance = new he({
         trigger: this.triggerElement,
         content: this.contentElement,
         options: {
@@ -426,8 +426,8 @@
           onShow: this.options.onShow,
           onHide: this.options.onHide,
           onToggle: ({ isHidden: n }) => {
-            var r, l;
-            (l = (r = this.options).onToggle) == null || l.call(r, { isHidden: n }), M(this.contentElement, "popover-toggle", {
+            var r, h;
+            (h = (r = this.options).onToggle) == null || h.call(r, { isHidden: n }), M(this.contentElement, "popover-toggle", {
               isHidden: n
             });
           },
@@ -460,7 +460,7 @@
      * Popover.autoInit('.custom-popover');
      */
     static autoInit(e = "[data-fx-popover]") {
-      const t = j(e);
+      const t = le(e);
       for (const s of t)
         new _x(s);
     }
