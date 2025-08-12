@@ -1,7 +1,7 @@
 (() => {
   // ../../node_modules/@flexilla/modal/dist/modal.js
-  var p = Object.defineProperty;
-  var b = (o, t, e) => t in o ? p(o, t, { enumerable: true, configurable: true, writable: true, value: e }) : o[t] = e;
+  var w = Object.defineProperty;
+  var b = (o, t, e) => t in o ? w(o, t, { enumerable: true, configurable: true, writable: true, value: e }) : o[t] = e;
   var s = (o, t, e) => b(o, typeof t != "symbol" ? t + "" : t, e);
   var r = (o, t = document.body) => t.querySelector(o);
   var c = (o, t = document.body) => Array.from(t.querySelectorAll(o));
@@ -32,7 +32,7 @@
     } else
       t();
   };
-  var y = ({ element: o, callback: t }) => {
+  var p = ({ element: o, callback: t }) => {
     g({
       element: o,
       callback: t,
@@ -44,6 +44,37 @@
     const n = new CustomEvent(t, { detail: e });
     o.dispatchEvent(n);
   };
+  function A(o, t, e = "move") {
+    if (!(o instanceof HTMLElement))
+      throw new Error("Source element must be an HTMLElement");
+    if (!(t instanceof HTMLElement))
+      throw new Error("Target element must be an HTMLElement");
+    if (!["move", "detachable"].includes(e))
+      throw new Error(`Invalid teleport mode: ${e}. Must be "move" or "detachable".`);
+    let n = document.createComment("teleporter-placeholder");
+    const a = o.parentNode;
+    return a ? a.insertBefore(n, o) : console.warn("Element has no parent; placeholder not inserted."), e === "move" ? (o.parentNode && t.appendChild(o), {
+      append() {
+        o.parentNode !== t && t.appendChild(o);
+      },
+      remove() {
+        n != null && n.parentNode && o.parentNode && n.parentNode.insertBefore(o, n);
+      },
+      restore() {
+        n != null && n.parentNode && o.parentNode !== a && n.parentNode.insertBefore(o, n);
+      }
+    }) : (o.parentNode && t.appendChild(o), {
+      append() {
+        t.contains(o) || t.appendChild(o);
+      },
+      remove() {
+        o.parentNode && o.remove();
+      },
+      restore() {
+        n != null && n.parentNode && !o.parentNode && n.parentNode.insertBefore(o, n);
+      }
+    });
+  }
   var E = (o, t, e) => {
     if (!(t instanceof HTMLElement))
       throw new Error("No modal-content found");
@@ -51,7 +82,7 @@
     const n = r("[data-modal-overlay]", o);
     n instanceof HTMLElement && n.setAttribute("data-state", e);
   };
-  var A = (o, t, e) => {
+  var C = (o, t, e) => {
     if (!o) {
       t || (document.body.style.overflowY = "auto");
       return;
@@ -77,11 +108,11 @@
       ));
     }
   };
-  var C = (o) => {
+  var L = (o) => {
     var t;
     o instanceof HTMLElement && ((t = o.parentElement) == null || t.removeChild(o));
   };
-  var x = ({ modalContent: o, overlayClassName: t }) => {
+  var T = ({ modalContent: o, overlayClassName: t }) => {
     const e = document.createElement("span");
     return e.setAttribute("aria-hidden", "true"), M({ newElement: e, existingElement: o }), e.classList.add(...t), e.setAttribute("data-modal-overlay", ""), e;
   };
@@ -112,6 +143,10 @@
       s(this, "overlayClassName");
       s(this, "allowBodyScroll");
       s(this, "initAsOpen");
+      s(this, "teleporter");
+      s(this, "moveElOnInit", () => {
+        this.teleporter.append();
+      });
       s(this, "closeAll", (t2) => {
         if (this.enableStackedModals)
           return;
@@ -149,12 +184,12 @@
       s(this, "showModal", () => {
         var e2, n2, a2, i2, l2;
         if (!(!this.initAsOpen && this.modalElement.getAttribute("data-state") === "open")) {
-          if (this.initAsOpen = false, this.closeAll(this.modalElement), this.overlayElement = this.hasDefaultOverlay ? this.overlayElement : x({
+          if (this.initAsOpen = false, this.closeAll(this.modalElement), this.overlayElement = this.hasDefaultOverlay ? this.overlayElement : T({
             modalContent: this.modalContent,
             overlayClassName: this.overlayClassName
           }), (e2 = this.overlayElement) == null || e2.setAttribute("data-state", "open"), f(this.modalElement, "modal-open", { modalId: this.modalId }), this.animateContent || this.animationEnter !== "") {
             const d2 = this.animateContent ? this.animateContent.enterAnimation : this.animationEnter;
-            d2 && d2 !== "" && this.modalContent.style.setProperty("--un-modal-animation", d2), E(this.modalElement, this.modalContent, "open"), y({
+            d2 && d2 !== "" && this.modalContent.style.setProperty("--un-modal-animation", d2), E(this.modalElement, this.modalContent, "open"), p({
               element: this.modalContent,
               callback: () => {
                 this.modalContent.style.removeProperty("--un-modal-animation");
@@ -166,7 +201,7 @@
         }
       });
       s(this, "closeModal", () => {
-        this.modalElement.setAttribute("aria-hidden", "true"), this.modalElement.setAttribute("data-state", "close"), this.modalElement.blur(), A(this.enableStackedModals || false, this.allowBodyScroll || false, this.modalElement), this.hasDefaultOverlay || C(this.overlayElement), f(this.modalElement, "modal-close", { modalId: this.modalElement.id });
+        this.modalElement.setAttribute("aria-hidden", "true"), this.modalElement.setAttribute("data-state", "close"), this.modalElement.blur(), C(this.enableStackedModals || false, this.allowBodyScroll || false, this.modalElement), this.hasDefaultOverlay || L(this.overlayElement), f(this.modalElement, "modal-close", { modalId: this.modalElement.id });
       });
       s(this, "closeLastAction", () => {
         var t2, e2, n2, a2;
@@ -189,7 +224,7 @@
           const u = this.animationExit ? this.animationExit : this.animateContent && this.animateContent.exitAnimation || "";
           this.modalContent.style.setProperty("--un-modal-animation", u);
         }
-        y({
+        p({
           element: this.modalContent,
           callback: () => {
             n2 && this.modalContent.style.removeProperty("--un-modal-animation"), this.closeModal(), this.closeLastAction(), document.activeElement instanceof HTMLElement && document.activeElement.blur(), this.modalElement.close("modal-closed");
@@ -220,7 +255,7 @@
         throw new Error("Modal content element not found or invalid. Please provide a valid HTMLElement or selector.");
       this.modalContent = l;
       const d = a.dataset.modalId;
-      this.modalId = `${d}`, this.initializeTriggers(n, d), this.dispatchEventToDocument = this.options.dispatchEventToDocument || true, this.initModal(this.modalElement, this.options), this.state === "open" ? (this.initAsOpen = true, this.showModal()) : (this.initAsOpen = false, this.modalElement.blur(), this.modalContent.setAttribute("data-state", "close"), this.modalElement.setAttribute("aria-hidden", "true"), this.modalElement.setAttribute("data-state", "close")), v.register("modal", this.modalElement, this);
+      this.modalId = `${d}`, this.teleporter = A(this.modalElement, document.body, "move"), this.initializeTriggers(n, d), this.dispatchEventToDocument = this.options.dispatchEventToDocument || true, this.initModal(this.modalElement, this.options), this.state === "open" ? (this.initAsOpen = true, this.showModal()) : (this.initAsOpen = false, this.modalElement.blur(), this.modalContent.setAttribute("data-state", "close"), this.modalElement.setAttribute("aria-hidden", "true"), this.modalElement.setAttribute("data-state", "close")), this.moveElOnInit(), v.register("modal", this.modalElement, this);
     }
     initializeTriggers(t, e) {
       if (!t && e) {
@@ -252,7 +287,7 @@
   * Creates and initializes a new Modal instance
   */
   s(m, "init", (t, e = {}, n) => new m(t, e, n));
-  var w = m;
+  var y = m;
 
   // src/index.js
   function Modal(Alpine) {
@@ -280,7 +315,7 @@
         );
         return;
       }
-      const modalInstance = new w(el, {
+      const modalInstance = new y(el, {
         dispatchEventToDocument: false
       });
       if (!Alpine.store("modals")) {
