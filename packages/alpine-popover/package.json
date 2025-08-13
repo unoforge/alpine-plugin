@@ -60,6 +60,6 @@
     "Flexilla"
   ],
   "dependencies": {
-    "@flexilla/popover": "^0.4.0"
+    "@flexilla/popover": "^1.0.0"
   }
 }

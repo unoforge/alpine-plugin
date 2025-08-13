@@ -25,50 +25,50 @@ module.exports = __toCommonJS(module_exports);
 
 // ../../node_modules/@flexilla/accordion/dist/accordion.js
 var b = Object.defineProperty;
-var A = (n, t, e) => t in n ? b(n, t, { enumerable: true, configurable: true, writable: true, value: e }) : n[t] = e;
-var r = (n, t, e) => A(n, typeof t != "symbol" ? t + "" : t, e);
-var f = (n, t = document.body) => t.querySelector(n);
-var l = (n, t = document.body) => {
-  const e = u(n, t);
-  return Array.from(e).find((i) => i.parentElement === t);
+var y = (i, t, e) => t in i ? b(i, t, { enumerable: true, configurable: true, writable: true, value: e }) : i[t] = e;
+var r = (i, t, e) => y(i, typeof t != "symbol" ? t + "" : t, e);
+var f = (i, t = document.body) => t.querySelector(i);
+var d = (i, t = document.body) => {
+  const e = h(i, t);
+  return Array.from(e).find((n) => n.parentElement === t);
 };
-var u = (n, t = document.body) => Array.from(t.querySelectorAll(n));
-var y = ({
-  element: n,
+var h = (i, t = document.body) => Array.from(t.querySelectorAll(i));
+var I = ({
+  element: i,
   callback: t,
   type: e,
-  keysCheck: i
+  keysCheck: n
 }) => {
-  const s = getComputedStyle(n), o = s.transition;
-  if (o !== "none" && o !== "" && !i.includes(o)) {
+  const s = getComputedStyle(i), o = s.transition;
+  if (o !== "none" && o !== "" && !n.includes(o)) {
     const a = "transitionend", c = () => {
-      n.removeEventListener(a, c), t();
+      i.removeEventListener(a, c), t();
     };
-    n.addEventListener(a, c, { once: true });
+    i.addEventListener(a, c, { once: true });
   } else
     t();
 };
-var I = ({
-  element: n,
+var A = ({
+  element: i,
   callback: t
 }) => {
-  y({
-    element: n,
+  I({
+    element: i,
     callback: t,
     type: "transition",
     keysCheck: ["all 0s ease 0s", "all"]
   });
 };
-var w = (n, t, e) => {
-  const i = new CustomEvent(t, { detail: e });
-  n.dispatchEvent(i);
+var w = (i, t, e) => {
+  const n = new CustomEvent(t, { detail: e });
+  i.dispatchEvent(n);
 };
 var x = ({
-  container: n,
+  container: i,
   attributeToWatch: t,
   onChildAdded: e
 }) => {
-  const i = new MutationObserver((s) => {
+  const n = new MutationObserver((s) => {
     for (const o of s)
       if (o.type === "childList" && Array.from(o.addedNodes).some(
         (a) => a instanceof HTMLElement && a.hasAttribute(t)
@@ -77,80 +77,87 @@ var x = ({
         break;
       }
   });
-  return i.observe(n, {
+  return n.observe(i, {
     childList: true
   }), () => {
-    i.disconnect();
+    n.disconnect();
   };
 };
-var E = (n) => {
+var E = (i) => {
   var _a;
-  const t = l("[data-accordion-trigger]", n), e = l("[data-accordion-content]", n), i = n.hasAttribute("data-default-open");
+  const t = d("[data-accordion-trigger]", i), e = d("[data-accordion-content]", i), n = i.hasAttribute("data-default-open");
   if (!(t instanceof HTMLButtonElement))
     throw new Error("The element does't have a Valid Trigger");
   if (!(e instanceof HTMLDivElement))
     throw new Error("No Valid Content Element");
-  const s = (_a = n.getAttribute("data-accordion-value")) != null ? _a : "", o = t.getAttribute("aria-expanded") === "true";
-  return { accordionTriggerElement: t, accordionContentElement: e, accordionItemValue: s, isItemExpanded: o, defaultOpened: i };
+  const s = (_a = i.getAttribute("data-accordion-value")) != null ? _a : "", o = t.getAttribute("aria-expanded") === "true";
+  return { accordionTriggerElement: t, accordionContentElement: e, accordionItemValue: s, isItemExpanded: o, defaultOpened: n };
 };
-var m = (n, t) => {
-  n.setAttribute("aria-hidden", t === "open" ? "false" : "true"), n.setAttribute("data-state", t);
+var m = (i, t) => {
+  i.setAttribute("aria-hidden", t === "open" ? "false" : "true"), i.setAttribute("data-state", t);
 };
-var T = (n, t = "close", e = "0px") => {
-  n.style.height = t === "open" ? "auto" : e, m(n, t);
+var C = (i, t = "close", e = "0px") => {
+  i.style.height = t === "open" ? "auto" : e, m(i, t);
 };
-var C = (n) => {
-  if (n.getAttribute("data-state") === "open")
+var L = (i) => {
+  if (i.getAttribute("data-state") === "open")
     return;
-  m(n, "open");
-  const t = n.scrollHeight;
-  n.style.height = `${t}px`, I({
-    element: n,
+  m(i, "open");
+  const t = i.scrollHeight;
+  i.style.height = `${t}px`, A({
+    element: i,
     callback: () => {
-      n.getAttribute("data-state") === "open" && (n.style.height = "auto");
+      i.getAttribute("data-state") === "open" && (i.style.height = "auto");
     }
   });
 };
-var L = (n, t = "0px") => {
-  n.getAttribute("data-state") !== "close" && (n.style.height = `${n.scrollHeight}px`, n.offsetHeight, n.style.height = t, m(n, "close"));
+var T = (i, t = "0px") => {
+  i.getAttribute("data-state") !== "close" && (i.style.height = `${i.scrollHeight}px`, i.offsetHeight, i.style.height = t, m(i, "close"));
 };
-var O = (n, t, e) => {
+var O = (i, t, e) => {
   var _a;
-  const s = u("[data-accordion-item]", e).filter((d) => d.parentElement === e), o = Array.from(s).indexOf(n.closest("[data-accordion-item]")), a = t ? o - 1 : o + 1;
-  return (_a = l("[data-accordion-trigger]", s[a])) != null ? _a : t ? l("[data-accordion-trigger]", s[s.length - 1]) : l("[data-accordion-trigger]", s[0]);
+  const n = h(":scope > [data-accordion-item]", e), s = i.parentElement;
+  if (!n.includes(s))
+    return null;
+  const o = n.indexOf(s), a = t ? o - 1 : o + 1, c = (_a = n[a]) != null ? _a : t ? n[n.length - 1] : n[0], u = d(":scope > [data-accordion-trigger]", c);
+  return u instanceof HTMLElement ? u : null;
 };
-var S = (n, t) => {
-  const e = document.activeElement;
-  if (!(e instanceof HTMLElement))
+var S = (i, t) => {
+  if (!(document.activeElement instanceof HTMLElement))
     return;
-  e.matches("[data-accordion-trigger]") && (n.key === "ArrowUp" || n.key === "ArrowDown") && (n.preventDefault(), O(e, n.key === "ArrowUp", t).focus());
+  const e = document.activeElement, n = e.parentElement;
+  if (!(!e.matches("[data-accordion-trigger]") || !(n != null && n.matches("[data-accordion-item]")) || n.parentElement !== t) && (i.key === "ArrowUp" || i.key === "ArrowDown")) {
+    i.preventDefault();
+    const s = O(e, i.key === "ArrowUp", t);
+    s && s.focus();
+  }
 };
-var g = (n, t) => {
-  n.ariaExpanded = t === "open" ? "true" : "false";
+var g = (i, t) => {
+  i.ariaExpanded = t === "open" ? "true" : "false";
 };
-var k = ({ collapsible: n, triggerElement: t, state: e, onInit: i }) => {
-  i ? (T(n, e), g(t, e)) : e === "open" ? (g(t, "open"), C(n)) : (g(t, "close"), L(n));
+var k = ({ collapsible: i, triggerElement: t, state: e, onInit: n }) => {
+  n ? (C(i, e), g(t, e)) : e === "open" ? (g(t, "open"), L(i)) : (g(t, "close"), T(i));
 };
 var p = class {
   static initGlobalRegistry() {
     window.$flexillaInstances || (window.$flexillaInstances = {});
   }
-  static register(t, e, i) {
-    return this.initGlobalRegistry(), window.$flexillaInstances[t] || (window.$flexillaInstances[t] = []), this.getInstance(t, e) || (window.$flexillaInstances[t].push({ element: e, instance: i }), i);
+  static register(t, e, n) {
+    return this.initGlobalRegistry(), window.$flexillaInstances[t] || (window.$flexillaInstances[t] = []), this.getInstance(t, e) || (window.$flexillaInstances[t].push({ element: e, instance: n }), n);
   }
   static getInstance(t, e) {
-    var i, s;
-    return this.initGlobalRegistry(), (s = (i = window.$flexillaInstances[t]) == null ? void 0 : i.find(
+    var n, s;
+    return this.initGlobalRegistry(), (s = (n = window.$flexillaInstances[t]) == null ? void 0 : n.find(
       (o) => o.element === e
     )) == null ? void 0 : s.instance;
   }
   static removeInstance(t, e) {
     this.initGlobalRegistry(), window.$flexillaInstances[t] && (window.$flexillaInstances[t] = window.$flexillaInstances[t].filter(
-      (i) => i.element !== e
+      (n) => n.element !== e
     ));
   }
 };
-var h = class h2 {
+var l = class l2 {
   /**
    * Creates an instance of Accordion
    * @param {string | HTMLElement} accordion - Selector string or HTMLElement for the accordion container
@@ -162,55 +169,54 @@ var h = class h2 {
     r(this, "items");
     r(this, "eventListeners", []);
     r(this, "cleanupObserver", null);
-    r(this, "reload", () => {
-      this.cleanup(), this.items = u("[data-accordion-item]", this.accordionEl).filter((t2) => t2.parentElement && t2.parentElement === this.accordionEl), this.initAccordion();
+    r(this, "handleKeyEvents", (t2) => {
+      S(t2, this.accordionEl);
     });
-    r(this, "triggerItemState", (t2, e2, i2) => {
-      this.options.preventClosingAll && (this.options.accordionType === "single" && i2 || this.options.accordionType === "multiple" && this.items.filter((s) => s.getAttribute("data-state") === "open").length === 1 && i2) || (this.setItemState(t2, e2), this.options.accordionType === "single" && this.closeOther({ current: t2 }), this.dispatchedEvent(t2));
+    r(this, "reload", () => {
+      this.cleanup(), this.items = h("[data-accordion-item]", this.accordionEl).filter((t2) => t2.parentElement && t2.parentElement === this.accordionEl), this.initAccordion();
+    });
+    r(this, "triggerItemState", (t2, e2, n2) => {
+      this.options.preventClosingAll && (this.options.accordionType === "single" && n2 || this.options.accordionType === "multiple" && this.items.filter((s) => s.getAttribute("data-state") === "open").length === 1 && n2) || (this.setItemState(t2, e2), this.options.accordionType === "single" && this.closeOther({ current: t2 }), this.dispatchedEvent(t2));
     });
     r(this, "cleanup", () => {
       this.accordionEl && (this.items.forEach((t2) => {
         t2 && t2.hasAttribute("data-state") && t2.removeAttribute("data-state");
-      }), this.eventListeners.forEach(({ element: t2, type: e2, listener: i2 }) => {
-        t2 && t2.removeEventListener && t2.removeEventListener(e2, i2);
+      }), this.eventListeners.forEach(({ element: t2, type: e2, listener: n2 }) => {
+        t2 && t2.removeEventListener && t2.removeEventListener(e2, n2);
       }), this.cleanupObserver && (this.cleanupObserver(), this.cleanupObserver = null), this.eventListeners = [], this.items = [], p.removeInstance("accordion", this.accordionEl));
     });
     if (this.accordionEl = typeof t == "string" ? f(t) : t, !this.accordionEl)
       throw new Error(`Accordion element not found: ${typeof t == "string" ? `No element matches selector "${t}"` : "Provided HTMLElement is null or undefined"}`);
-    const i = p.getInstance("accordion", this.accordionEl);
-    if (i)
-      return i;
+    const n = p.getInstance("accordion", this.accordionEl);
+    if (n)
+      return n;
     this.options = {
       accordionType: this.accordionEl.dataset.accordionType || e.accordionType || "single",
       preventClosingAll: this.accordionEl.hasAttribute("data-prevent-closing-all") || e.preventClosingAll || false,
       defaultValue: this.accordionEl.dataset.defaultValue || e.defaultValue || "",
       allowCloseFromContent: this.accordionEl.hasAttribute("data-allow-close-from-content") || e.allowCloseFromContent || false,
       onChangeItem: e.onChangeItem
-    }, this.items = u("[data-accordion-item]", this.accordionEl).filter((s) => s.parentElement && s.parentElement === this.accordionEl), this.initAccordion();
+    }, this.items = h("[data-accordion-item]", this.accordionEl).filter((s) => s.parentElement && s.parentElement === this.accordionEl), this.initAccordion();
   }
   initAccordion() {
     if (!this.accordionEl)
       return;
-    const { accordionType: t, defaultValue: e, preventClosingAll: i } = this.options;
-    let s = l(`[data-accordion-item][data-accordion-value="${e}"]`, this.accordionEl);
+    const { accordionType: t, defaultValue: e, preventClosingAll: n } = this.options;
+    let s = d(`[data-accordion-item][data-accordion-value="${e}"]`, this.accordionEl);
     if (t === "single")
       this.options.preventClosingAll && !(s instanceof HTMLElement) && (s = this.items[0]), this.closeOther({ current: s }), s && this.setItemState(s, "open", true);
     else {
       this.closeAll(true);
-      const a = this.items.some((c) => c.getAttribute("data-state") === "open");
-      if (i && !a)
+      const o = this.items.some((a) => a.getAttribute("data-state") === "open");
+      if (n && !o)
         this.setItemState(this.items[0], "open", true);
       else {
-        const c = this.items.filter((d) => d.getAttribute("data-state") === "open");
-        for (const d of c)
-          this.setItemState(d, "open", true);
+        const a = this.items.filter((c) => c.getAttribute("data-state") === "open");
+        for (const c of a)
+          this.setItemState(c, "open", true);
       }
     }
-    this.addEventListeners();
-    const o = (a) => {
-      S(a, this.accordionEl);
-    };
-    this.accordionEl.addEventListener("keydown", o), this.eventListeners.push({ element: this.accordionEl, type: "keydown", listener: o }), p.register("accordion", this.accordionEl, this), this.cleanupObserver = x({
+    this.addEventListeners(), this.accordionEl.addEventListener("keydown", this.handleKeyEvents), this.eventListeners.push({ element: this.accordionEl, type: "keydown", listener: this.handleKeyEvents }), p.register("accordion", this.accordionEl, this), this.cleanupObserver = x({
       container: this.accordionEl,
       attributeToWatch: "data-accordion-item",
       onChildAdded: this.reload
@@ -219,46 +225,46 @@ var h = class h2 {
   destroy() {
     this.accordionEl && (this.items.forEach((t) => {
       t && t.hasAttribute("data-state") && t.removeAttribute("data-state");
-    }), this.eventListeners.forEach(({ element: t, type: e, listener: i }) => {
-      t && t.removeEventListener && t.removeEventListener(e, i);
+    }), this.eventListeners.forEach(({ element: t, type: e, listener: n }) => {
+      t && t.removeEventListener && t.removeEventListener(e, n);
     }), this.eventListeners = [], this.items = [], p.removeInstance("accordion", this.accordionEl), this.cleanupObserver && (this.cleanupObserver(), this.cleanupObserver = null));
   }
-  setItemState(t, e, i) {
+  setItemState(t, e, n) {
     t.setAttribute("data-state", e);
     const { accordionContentElement: s, accordionTriggerElement: o } = E(t);
     k({
       collapsible: s,
       triggerElement: o,
       state: e,
-      onInit: i
+      onInit: n
     });
   }
   closeOther({ current: t, onInit: e }) {
-    this.items.forEach((i) => {
-      i !== t && (e && this.options.accordionType === "multiple" ? i.hasAttribute("data-default-open") ? this.setItemState(i, "open") : this.setItemState(i, "close") : this.setItemState(i, "close"));
+    this.items.forEach((n) => {
+      n !== t && (e && this.options.accordionType === "multiple" ? n.hasAttribute("data-default-open") ? this.setItemState(n, "open") : this.setItemState(n, "close") : this.setItemState(n, "close"));
     });
   }
   closeAll(t) {
     this.closeOther({ onInit: t });
   }
   dispatchedEvent(t) {
-    const { accordionContentElement: e, accordionTriggerElement: i, isItemExpanded: s, accordionItemValue: o } = E(t);
+    const { accordionContentElement: e, accordionTriggerElement: n, isItemExpanded: s, accordionItemValue: o } = E(t);
     this.options.onChangeItem && this.options.onChangeItem({
-      expandedItem: { accordionItem: this.accordionEl, trigger: i, content: e, value: o, isExpanded: s }
+      expandedItem: { accordionItem: this.accordionEl, trigger: n, content: e, value: o, isExpanded: s }
     }), w(this.accordionEl, "change-item", {
-      targetElement: { trigger: i, content: e, isExpanded: s },
+      targetElement: { trigger: n, content: e, isExpanded: s },
       items: this.items
     });
   }
   addEventListeners() {
     this.items.forEach((t) => {
-      const e = f("[data-accordion-trigger]", t), i = f("[data-accordion-content]", t), s = () => this.triggerItemState(t, "close", true), o = (a) => {
+      const e = f("[data-accordion-trigger]", t), n = f("[data-accordion-content]", t), s = () => this.triggerItemState(t, "close", true), o = (a) => {
         a.preventDefault();
         const c = t.getAttribute("data-state") === "open";
-        let d = c ? "close" : "open";
-        this.triggerItemState(t, d, c);
+        let u = c ? "close" : "open";
+        this.triggerItemState(t, u, c);
       };
-      e && (e.addEventListener("click", o), this.eventListeners.push({ element: e, type: "click", listener: o })), this.options.allowCloseFromContent && i && (i.addEventListener("click", s), this.eventListeners.push({ element: i, type: "click", listener: s }));
+      e && (e.addEventListener("click", o), this.eventListeners.push({ element: e, type: "click", listener: o })), this.options.allowCloseFromContent && n && (n.addEventListener("click", s), this.eventListeners.push({ element: n, type: "click", listener: s }));
     });
   }
   /**
@@ -272,7 +278,7 @@ var h = class h2 {
    * ```
    */
   show(t) {
-    const e = l(`[data-accordion-item][data-accordion-value="${t}"]`, this.accordionEl);
+    const e = d(`[data-accordion-item][data-accordion-value="${t}"]`, this.accordionEl);
     !e || e.getAttribute("data-state") === "open" || (this.options.accordionType === "single" && this.closeOther({ current: e }), this.setItemState(e, "open"), this.dispatchedEvent(e));
   }
   /**
@@ -286,7 +292,7 @@ var h = class h2 {
       * ```
   */
   hide(t) {
-    const e = l(`[data-accordion-item][data-accordion-value="${t}"]`, this.accordionEl);
+    const e = d(`[data-accordion-item][data-accordion-value="${t}"]`, this.accordionEl);
     if (!(!e || !(e.getAttribute("data-state") === "open"))) {
       if (this.options.preventClosingAll) {
         const s = this.items.filter((o) => o.getAttribute("data-state") === "open");
@@ -297,10 +303,10 @@ var h = class h2 {
     }
   }
 };
-r(h, "autoInit", (t = "[data-fx-accordion]") => {
-  const e = u(t, document.documentElement);
-  for (const i of e)
-    new h(i);
+r(l, "autoInit", (t = "[data-fx-accordion]") => {
+  const e = h(t, document.documentElement);
+  for (const n of e)
+    new l(n);
 }), /**
 * Shortcut method to create a new Accordion instance
 * @static
@@ -319,8 +325,8 @@ r(h, "autoInit", (t = "[data-fx-accordion]") => {
 * });
 * ```
 */
-r(h, "init", (t, e = {}) => new h(t, e));
-var v = h;
+r(l, "init", (t, e = {}) => new l(t, e));
+var v = l;
 
 // src/index.js
 function Accordion(Alpine) {

@@ -446,6 +446,7 @@ var P = class _P {
    * });
    */
   constructor(e, t = {}) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
     a(this, "triggerElement");
     a(this, "contentElement");
     a(this, "options");
@@ -505,7 +506,7 @@ var P = class _P {
     const o = H.getInstance("popover", this.contentElement);
     if (o)
       return o;
-    this.triggerElement = A(`[data-popover-trigger][data-popover-id=${n.getAttribute("id")}]`), this.options = t, this.triggerStrategy = this.options.triggerStrategy || n.dataset.triggerStrategy || "click", this.placement = this.options.placement || n.dataset.placement || "bottom-middle", this.offsetDistance = this.options.offsetDistance || parseInt(`${n.dataset.offsetDistance}`) | 6, this.preventFromCloseOutside = this.options.preventFromCloseOutside || n.hasAttribute("data-prevent-close-outside") || false, this.preventFromCloseInside = this.options.preventCloseFromInside || n.hasAttribute("data-prevent-close-inside") || false, this.defaultState = this.options.defaultState || n.dataset.defaultState || "close", this.experimentalOptions = Object.assign({}, de, t.experimental), this.teleporter = ce(this.contentElement, document.body, this.experimentalOptions.teleportMode), this.PopoverInstance = new he({
+    this.triggerElement = A(`[data-popover-trigger][data-popover-id=${n.getAttribute("id")}]`), this.options = t, this.triggerStrategy = (_b = (_a = n.dataset.triggerStrategy) != null ? _a : this.options.triggerStrategy) != null ? _b : "click", this.placement = (_d = (_c = n.dataset.placement) != null ? _c : this.options.placement) != null ? _d : "bottom-middle", this.offsetDistance = (_f = (_e = parseInt(`${n.dataset.offsetDistance}`)) != null ? _e : this.options.offsetDistance) != null ? _f : 6, this.preventFromCloseOutside = (_h = (_g = n.hasAttribute("data-prevent-close-outside")) != null ? _g : this.options.preventFromCloseOutside) != null ? _h : false, this.preventFromCloseInside = n.hasAttribute("data-close-inside") ? false : (_i = this.options.preventCloseFromInside) != null ? _i : true, this.defaultState = (_k = (_j = n.dataset.defaultState) != null ? _j : this.options.defaultState) != null ? _k : "close", this.experimentalOptions = Object.assign({}, de, t.experimental), this.teleporter = ce(this.contentElement, document.body, this.experimentalOptions.teleportMode), this.PopoverInstance = new he({
       trigger: this.triggerElement,
       content: this.contentElement,
       options: {

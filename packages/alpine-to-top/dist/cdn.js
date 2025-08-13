@@ -3,9 +3,9 @@
   var e2 = (t, o = document.body) => o.querySelector(t);
 
   // ../../node_modules/@flexilla/utilities/dist/scroll-to-top.js
-  var p = ({ triggerElement: e3, initFrom: i = 300, target: s2 }) => {
+  var p = ({ triggerElement: e3, initFrom: i2 = 300, target: s2 }) => {
     const o = typeof e3 == "string" ? e2(e3) : e3, l2 = typeof s2 == "string" ? e2(s2) : s2, c = l2 || window, n2 = () => {
-      o == null || o.setAttribute("data-state", window.scrollY > i ? "visible" : "hidden");
+      o == null || o.setAttribute("data-state", window.scrollY > i2 ? "visible" : "hidden");
     }, r = () => {
       c.scrollTo({ top: 0, behavior: "smooth" });
     };

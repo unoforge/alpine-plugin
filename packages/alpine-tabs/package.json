@@ -60,6 +60,6 @@
     "Dissmiss"
   ],
   "dependencies": {
-    "@flexilla/tabs": "^2.2.0"
+    "@flexilla/tabs": "^2.2.1"
   }
 }

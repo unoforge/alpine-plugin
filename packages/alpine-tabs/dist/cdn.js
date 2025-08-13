@@ -78,7 +78,7 @@
   var C = ({
     triggerElement: a,
     indicator_: t,
-    transformDuration: e = 300,
+    transformDuration: e = 200,
     transformEasing: n = "ease"
   }) => {
     t instanceof HTMLElement && t.animate(
@@ -107,7 +107,7 @@
     for (const e of t)
       e !== a && (p(e, { "data-state": I, tabindex: "-1" }), e instanceof HTMLAnchorElement && e.setAttribute("aria-selected", "false"));
   };
-  var k = ({ indicatorTransformDuration: a, indicatorTransformEaseing: t, indicator: e, triggerElement: n, tabList: i }) => {
+  var k = ({ indicatorTransformDuration: a, indicatorTransformEaseing: t, indicator: e, triggerElement: n }) => {
     !(e instanceof HTMLSpanElement) || !(n instanceof HTMLElement) || C({
       triggerElement: n,
       indicator_: e,
@@ -141,8 +141,7 @@
         indicatorTransformDuration: i,
         indicatorTransformEaseing: l,
         indicator: A,
-        triggerElement: E,
-        tabList: u
+        triggerElement: E
       }));
     }
     return { currentTabPanel: c };

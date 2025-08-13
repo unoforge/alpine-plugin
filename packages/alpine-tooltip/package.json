@@ -1,7 +1,7 @@
 {
-  "name": "@flexilla/alpine-dismissible",
+  "name": "@flexilla/alpine-tooltip",
   "version": "0.1.0",
-  "description": "AlpineJS plugin for creating collapsible components",
+  "description": "AlpineJS plugin for creating tooltip components",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/unoforge/alpine-plugin/issues"
   },
-  "homepage": "https://github.com/unoforge/alpine-plugin/packages/alpine-dismissible/README.md",
+  "homepage": "https://github.com/unoforge/alpine-plugin/packages/alpine-tabs/README.md",
   "devDependencies": {
     "brotli-size": "^4.0.0",
     "esbuild": "^0.25.1",
@@ -48,18 +48,18 @@
   ],
   "keywords": [
     "AlpineJS",
-    "Alpine Dissmissible",
+    "Alpine Tooltip",
     "Alpine Plugin",
     "Alpinejs Pugin",
     "ts",
-    "Dissmissible",
+    "Tooltip",
     "component",
     "interactive",
     "intercative component",
     "Flexilla",
-    "Dissmiss"
+    "tooltip Component"
   ],
   "dependencies": {
-    "@flexilla/dismissible": "^2.0.12"
+    "@flexilla/tooltip": "^2.4.1"
   }
 }
