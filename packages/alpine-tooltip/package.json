@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-tooltip",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "AlpineJS plugin for creating tooltip components",
   "type": "module",
   "private": false,
