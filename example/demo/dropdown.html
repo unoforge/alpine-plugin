@@ -16,24 +16,58 @@
                 Default Dropdown
             </h1>
             <div class="p-10 rounded-lg bg-gradient-to-bl from-blue-600 via-indigo-400 to-sky-600">
-                <div x-data="{ dropdowns: [1, 2, 3, 4] }" class="space-y-4">
-                    <template x-for="id in dropdowns" :key="id">
-                        <div>
-                            <button data-dropdown-trigger :data-dropdown-id="`dropdown-${id}`"
-                                class="border border-zinc-800 hover:bg-zinc-950 bg-zinc-900 text-white px-4 py-2 rounded-lg text-sm">
-                                Open Dropdown <span x-text="id"></span>
+                <div class="space-y-4">
+                    <div>
+                        <button data-dropdown-trigger data-dropdown-id="dropdown-1"
+                            class="border border-zinc-800 hover:bg-zinc-950 bg-zinc-900 text-white px-4 py-2 rounded-lg text-sm">
+                            Open Dropdown <span x-text="id"></span>
+                        </button>
+                        <div x-dropdown x-data role="list" data-prevent-close-from-inside data-prevent-close-inside
+                            id="dropdown-1" data-fx-popper
+                            class="ui-popper z-20 w-56 border border-zinc-800 bg-zinc-900/80 text-zinc-50 backdrop-filter backdrop-blur-xl rounded-lg flex flex-col overflow-hidden opacity-0 invisible fx-open:opacity-100 fx-open:visible ease-linear transition-transform translate-y-4 fx-open:translate-y-0">
+                            <a href="#"
+                                class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item
+                                1</a>
+                            <a href="/"
+                                class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item
+                                2</a>
+                            <a href="#"
+                                class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item
+                                3</a>
+                            <button data-dropdown-trigger data-dropdown-id="sub-demo"
+                                class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item
+                                4
                             </button>
-                            <template x-teleport="body">
-                                <div x-dropdown x-data role="list" :id="`dropdown-${id}`" :data-drop-down="id" data-fx-popper
-                                    class="ui-popper z-20 w-56 border border-zinc-800 bg-zinc-900/80 text-zinc-50 backdrop-filter backdrop-blur-xl rounded-lg flex flex-col overflow-hidden opacity-0 invisible fx-open:opacity-100 fx-open:visible ease-linear transition-transform translate-y-4 fx-open:translate-y-0">
-                                    <a href="#" class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item 1</a>
-                                    <a href="/" class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item 2</a>
-                                    <a href="#" class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item 3</a>
-                                    <a href="#" class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">Item 4</a>
-                                </div>
-                            </template>
                         </div>
-                    </template>
+                        <div x-data x-dropdown role="list" data-placement="right-start" id="sub-demo" data-fx-popper
+                            class="ui-popper z-20 w-56 border border-zinc-800 bg-zinc-900/80 text-zinc-50 backdrop-filter backdrop-blur-xl rounded-lg flex flex-col overflow-hidden opacity-0 invisible fx-open:opacity-100 fx-open:visible">
+                            <div role="listitem">
+                                <a href="#"
+                                    class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">
+                                    Item 1
+                                </a>
+                            </div>
+                            <div role="listitem">
+                                <a href="/"
+                                    class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">
+                                    Item 1
+                                </a>
+                            </div>
+                            <div role="listitem">
+                                <a href="#"
+                                    class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">
+                                    Item 1
+                                </a>
+                            </div>
+                            <div role="listitem">
+                                <a href=""
+                                    class="focus:outline focus:bg-zinc-900/90 outline-none focus:outline-blue-500 data-[focus=active]:outline data-[focus=active]:bg-zinc-900/90 data-[focus=active]:outline-blue-500 ease-linear flex hover-bg-zinc-800/80 p-2 rounded-md">
+                                    Item 1
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

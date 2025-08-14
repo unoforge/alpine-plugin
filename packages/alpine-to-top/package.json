@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-to-top",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AlpineJS directive to add Scroll to top",
   "type": "module",
   "private": false,

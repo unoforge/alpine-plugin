@@ -1,0 +1,5 @@
+/node_modules
+/.idea
+marcreichel-alpine-autosize-*.tgz
+package-lock.json
+/dist
