@@ -2,9 +2,9 @@
 var B = Object.defineProperty;
 var j = (i, e, t) => e in i ? B(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
 var a = (i, e, t) => j(i, typeof e != "symbol" ? e + "" : e, t);
-var G = Object.defineProperty;
-var q = (i, e, t) => e in i ? G(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
-var p = (i, e, t) => q(i, typeof e != "symbol" ? e + "" : e, t);
+var q = Object.defineProperty;
+var G = (i, e, t) => e in i ? q(i, e, { enumerable: true, configurable: true, writable: true, value: t }) : i[e] = t;
+var p = (i, e, t) => G(i, typeof e != "symbol" ? e + "" : e, t);
 var V = "bottom";
 var X = ({ reference: i, popper: e }) => {
   if (!i || !e)
@@ -59,33 +59,33 @@ var ie = ({
     s,
     m,
     e
-  ), H = () => Y(s, e, n, m) ? n + e / 2 - s / 2 : b(), M = () => J(o, r, t, l) ? t + r / 2 - o / 2 : w(), A = () => n + s <= m ? n : b(), k = () => n + e - s >= 0 ? n + e - s : b(), L = () => t + o <= l ? t : w(), U = () => t + r - o >= 0 ? t + r - o : w();
+  ), M = () => Y(s, e, n, m) ? n + e / 2 - s / 2 : b(), A = () => J(o, r, t, l) ? t + r / 2 - o / 2 : w(), C = () => n + s <= m ? n : b(), L = () => n + e - s >= 0 ? n + e - s : b(), x = () => t + o <= l ? t : w(), U = () => t + r - o >= 0 ? t + r - o : w();
   let u = 0, v = 0;
-  const C = t - o - c, x = t + r + c, I = n - s - c, D = n + e + c, W = g >= o + c, F = E >= o + c, R = f >= s + c, $ = d >= s + c;
-  switch (i.startsWith("top") ? v = W ? C : F ? x : Math.max(C, x) : i.startsWith("bottom") ? v = F ? x : W ? C : Math.max(x) : i.startsWith("left") ? u = R ? I : $ ? D : Math.max(I, D) : i.startsWith("right") && (u = $ ? D : R ? I : Math.max(D, I)), i) {
+  const T = t - o - c, I = t + r + c, D = n - s - c, H = n + e + c, P = g >= o + c, W = E >= o + c, R = f >= s + c, $ = d >= s + c;
+  switch (i.startsWith("top") ? v = P ? T : W ? I : Math.max(T, I) : i.startsWith("bottom") ? v = W ? I : P ? T : Math.max(I) : i.startsWith("left") ? u = R ? D : $ ? H : Math.max(D, H) : i.startsWith("right") && (u = $ ? H : R ? D : Math.max(H, D)), i) {
     case "bottom":
     case "bottom-middle":
     case "top":
     case "top-middle":
-      u = H();
+      u = M();
       break;
     case "left":
     case "left-middle":
     case "right":
     case "right-middle":
-      v = M();
+      v = A();
       break;
     case "bottom-start":
     case "top-start":
-      u = A();
+      u = C();
       break;
     case "bottom-end":
     case "top-end":
-      u = k();
+      u = L();
       break;
     case "left-start":
     case "right-start":
-      v = L();
+      v = x();
       break;
     case "left-end":
     case "right-end":
@@ -128,12 +128,12 @@ var se = class {
     }), p(this, "initPlacement", () => {
       var d;
       this.validateElements(), this.setInitialStyles();
-      const f = window.innerWidth, E = window.innerHeight, { popperHeight: g, popperWidth: w, refHeight: b, refWidth: H, refLeft: M, refTop: A } = X({ reference: this.reference, popper: this.popper }), { x: k, y: L } = ie(
+      const f = window.innerWidth, E = window.innerHeight, { popperHeight: g, popperWidth: w, refHeight: b, refWidth: M, refLeft: A, refTop: C } = X({ reference: this.reference, popper: this.popper }), { x: L, y: x } = ie(
         {
           placement: this.placement,
-          refWidth: H,
-          refTop: A,
-          refLeft: M,
+          refWidth: M,
+          refTop: C,
+          refLeft: A,
           popperWidth: w,
           refHeight: b,
           popperHeight: g,
@@ -142,7 +142,7 @@ var se = class {
           offsetDistance: this.offsetDistance
         }
       );
-      this.setPopperStyleProperty(k, L), (d = this.onUpdate) == null || d.call(this, { x: k, y: L, placement: this.placement });
+      this.setPopperStyleProperty(L, x), (d = this.onUpdate) == null || d.call(this, { x: L, y: x, placement: this.placement });
     }), p(this, "removeWindowEvents", () => {
       this.isWindowEventsRegistered && (!this.disableOnResize && window.removeEventListener("resize", this.updatePosition), !this.disableOnScroll && window.removeEventListener("scroll", this.updatePosition), this.isWindowEventsRegistered = false);
     }), p(this, "attachWindowEvent", () => {
@@ -344,12 +344,12 @@ var ce = class {
     }), this.triggerElement.addEventListener("click", this.toggleStateOnClick), this.triggerStrategy === "hover" && this.triggerElement.addEventListener("mouseenter", this.showOnMouseEnter);
   }
 };
-var P = (i, e = document.body) => e.querySelector(i);
-var O = (i, e = document.body) => Array.from(e.querySelectorAll(i));
-var pe = (i) => typeof i == "string" ? P(i) : i;
+var F = (i, e = document.body) => e.querySelector(i);
+var S = (i, e = document.body) => Array.from(e.querySelectorAll(i));
+var pe = (i) => typeof i == "string" ? F(i) : i;
 var me = ({ containerElement: i, targetChildren: e = "a:not([disabled]), button:not([disabled])", direction: t }) => {
   let n = false;
-  const r = pe(i) || document.body, s = typeof e == "string" ? O(e, r) : e, o = (l) => {
+  const r = pe(i) || document.body, s = typeof e == "string" ? S(e, r) : e, o = (l) => {
     if (l.preventDefault(), r.focus(), s.length === 0)
       return;
     const m = l.key, c = document.activeElement;
@@ -390,11 +390,19 @@ var me = ({ containerElement: i, targetChildren: e = "a:not([disabled]), button:
     }
   };
 };
-var K = (i, e, t) => {
+var z = (i, e, t) => {
   const n = new CustomEvent(e, { detail: t });
   i.dispatchEvent(n);
 };
-function ge(i, e, t = "move") {
+function ge(i) {
+  const e = () => {
+    document.querySelector(
+      "[data-fx-component]:not([data-component-initialized])"
+    ) ? requestAnimationFrame(e) : i();
+  };
+  e();
+}
+function fe(i, e, t = "move") {
   if (!(i instanceof HTMLElement))
     throw new Error("Source element must be an HTMLElement");
   if (!(e instanceof HTMLElement))
@@ -425,7 +433,7 @@ function ge(i, e, t = "move") {
     }
   });
 }
-var T = class {
+var O = class {
   static initGlobalRegistry() {
     window.$flexillaInstances || (window.$flexillaInstances = {});
   }
@@ -443,12 +451,18 @@ var T = class {
       (n) => n.element !== t
     ));
   }
+  static setup(e) {
+    e.setAttribute("data-fx-component", "fx");
+  }
+  static initialized(e) {
+    e.setAttribute("data-component-initialized", "initialized");
+  }
 };
-var fe = {
+var ue = {
   teleport: true,
   teleportMode: "move"
 };
-var S = class S2 {
+var k = class k2 {
   /**
    * Creates a new Dropdown instance
    * @param dropdown - The dropdown content element or selector
@@ -476,7 +490,7 @@ var S = class S2 {
       t2 === "add" ? (e2.setAttribute("data-current-subtrigger", ""), e2.setAttribute("data-focus", "active")) : (e2.removeAttribute("data-current-subtrigger"), e2.removeAttribute("data-focus"));
     });
     a(this, "updateObserverFor", (e2) => {
-      const t2 = O("[data-dropdown-trigger]", this.contentElement);
+      const t2 = S("[data-dropdown-trigger]", this.contentElement);
       for (const n2 of t2)
         e2.observe(n2, {
           attributes: true,
@@ -503,7 +517,9 @@ var S = class S2 {
       (n2 = (t2 = this.options).onToggle) == null || n2.call(t2, { isHidden: e2 });
     });
     a(this, "moveElOnInit", () => {
-      this.experimentalOptions.teleport && (this.experimentalOptions.teleportMode === "detachable" ? this.teleporter.remove() : this.teleporter.append());
+      this.experimentalOptions.teleport && ge(() => {
+        this.experimentalOptions.teleportMode === "detachable" ? this.teleporter.remove() : this.teleporter.append();
+      });
     });
     a(this, "moveEl", () => {
       this.experimentalOptions.teleport && this.experimentalOptions.teleportMode === "detachable" && this.teleporter.remove();
@@ -548,13 +564,13 @@ var S = class S2 {
     });
     a(this, "onShow", () => {
       var e2, t2;
-      K(this.contentElement, "dropdown-show", {
+      z(this.contentElement, "dropdown-show", {
         isHidden: false
       }), (t2 = (e2 = this.options).onShow) == null || t2.call(e2), this.observeEl(), this.observeSubtriggers();
     });
     a(this, "onHide", () => {
       var e2, t2;
-      K(this.contentElement, "dropdown-hide", {
+      z(this.contentElement, "dropdown-hide", {
         isHidden: true
       }), (t2 = (e2 = this.options).onHide) == null || t2.call(e2), this.moveEl(), this.triggerElement.hasAttribute("data-current-subtrigger") && this.updateSubtriggerAttr(this.triggerElement, "remove"), this.disconnectObserver();
     });
@@ -573,9 +589,9 @@ var S = class S2 {
       this.keyObserver && this.keyObserver.disconnect(), this.subtriggerObserver && this.subtriggerObserver.disconnect();
     });
     a(this, "cleanup", () => {
-      this.disconnectObserver(), this.OverlayInstance.cleanup(), T.removeInstance("dropdown", this.contentElement);
+      this.disconnectObserver(), this.OverlayInstance.cleanup(), O.removeInstance("dropdown", this.contentElement);
     });
-    const n = typeof e == "string" ? P(e) : e;
+    const n = typeof e == "string" ? F(e) : e;
     if (!(n instanceof HTMLElement))
       throw new Error(
         "Invalid dropdown content element: Must provide either a valid HTMLElement or a selector string that resolves to an existing HTMLElement"
@@ -583,13 +599,14 @@ var S = class S2 {
     if (!n.id)
       throw new Error("Dropdown content element must have an 'id' attribute for trigger association");
     this.contentElement = n;
-    const r = T.getInstance("dropdown", this.contentElement);
+    const r = O.getInstance("dropdown", this.contentElement);
     if (r)
       return r;
+    O.setup(this.contentElement);
     const s = `[data-dropdown-trigger][data-dropdown-id=${this.contentElement.id}]`;
-    if (this.triggerElement = P(s), !(this.triggerElement instanceof HTMLElement))
+    if (this.triggerElement = F(s), !(this.triggerElement instanceof HTMLElement))
       throw new Error(`No valid trigger element found. Ensure a trigger element exists with attributes: data-dropdown-trigger and data-dropdown-id="${this.contentElement.id}"`);
-    this.options = t, this.triggerStrategy = this.contentElement.dataset.triggerStrategy || this.options.triggerStrategy || "click", this.placement = this.contentElement.dataset.placement || this.options.placement || "bottom-start", this.offsetDistance = parseInt(`${this.contentElement.dataset.offsetDistance}`) || this.options.offsetDistance || 6, this.preventFromCloseOutside = this.contentElement.hasAttribute("data-prevent-close-outside") || this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.contentElement.hasAttribute("data-prevent-close-inside") || this.options.preventCloseFromInside || false, this.defaultState = this.contentElement.dataset.defaultState || this.options.defaultState || "close", this.experimentalOptions = Object.assign({}, fe, t.experimental), this.teleporter = ge(this.contentElement, document.body, this.experimentalOptions.teleportMode), this.OverlayInstance = new ce({
+    this.options = t, this.triggerStrategy = this.contentElement.dataset.triggerStrategy || this.options.triggerStrategy || "click", this.placement = this.contentElement.dataset.placement || this.options.placement || "bottom-start", this.offsetDistance = parseInt(`${this.contentElement.dataset.offsetDistance}`) || this.options.offsetDistance || 6, this.preventFromCloseOutside = this.contentElement.hasAttribute("data-prevent-close-outside") || this.options.preventFromCloseOutside || false, this.preventFromCloseInside = this.contentElement.hasAttribute("data-prevent-close-inside") || this.options.preventCloseFromInside || false, this.defaultState = this.contentElement.dataset.defaultState || this.options.defaultState || "close", this.experimentalOptions = Object.assign({}, ue, t.experimental), this.teleporter = fe(this.contentElement, document.body, this.experimentalOptions.teleportMode), this.OverlayInstance = new ce({
       trigger: this.triggerElement,
       content: this.contentElement,
       options: {
@@ -601,7 +618,7 @@ var S = class S2 {
         defaultState: this.defaultState,
         beforeShow: this.beforeShow,
         beforeHide: () => {
-          if (O("[data-dropdown-trigger][aria-expanded=true]", this.contentElement).length >= 1)
+          if (S("[data-dropdown-trigger][aria-expanded=true]", this.contentElement).length >= 1)
             return { cancelAction: true };
           this.beforeHide();
         },
@@ -612,11 +629,11 @@ var S = class S2 {
         },
         popper: this.options.popper
       }
-    }), this.moveElOnInit(), this.items = O("a:not([disabled]), button:not([disabled])", this.contentElement), this.navigationKeys = me({
+    }), this.moveElOnInit(), this.items = S("a:not([disabled]), button:not([disabled])", this.contentElement), this.navigationKeys = me({
       containerElement: this.contentElement,
       targetChildren: this.items,
       direction: "up-down"
-    }), T.register("dropdown", this.contentElement, this);
+    }), O.register("dropdown", this.contentElement, this), O.initialized(this.contentElement);
   }
   /**
    * Initializes a single dropdown instance
@@ -625,20 +642,20 @@ var S = class S2 {
    * @returns A new Dropdown instance
    */
   static init(e, t = {}) {
-    new S2(e, t);
+    new k2(e, t);
   }
 };
-a(S, "autoInit", (e = "[data-fx-dropdown]") => {
-  const t = O(e);
+a(k, "autoInit", (e = "[data-fx-dropdown]") => {
+  const t = S(e);
   for (const n of t)
-    new S(n);
+    new k(n);
 });
-var z = S;
+var K = k;
 
 // src/index.js
 function Dropdown(Alpine) {
   Alpine.directive("dropdown", (el, {}, { cleanup }) => {
-    const dropdown_ = new z(el);
+    const dropdown_ = new K(el);
     cleanup(() => {
       dropdown_.cleanup();
     });

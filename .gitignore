@@ -3,6 +3,4 @@ node_modules/
 .DS_Store
 lerna-debug.log
 dist/
-/dist
-**/dist/
 packages/**/dist/

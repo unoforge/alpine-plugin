@@ -1,9 +1,9 @@
 // ../../node_modules/@flexilla/offcanvas/dist/offcanvas.js
-var w = Object.defineProperty;
-var b = (t, e, n) => e in t ? w(t, e, { enumerable: true, configurable: true, writable: true, value: n }) : t[e] = n;
-var o = (t, e, n) => b(t, typeof e != "symbol" ? e + "" : e, n);
+var g = Object.defineProperty;
+var w = (t, e, n) => e in t ? g(t, e, { enumerable: true, configurable: true, writable: true, value: n }) : t[e] = n;
+var o = (t, e, n) => w(t, typeof e != "symbol" ? e + "" : e, n);
 var m = (t, e = document.body) => e.querySelector(t);
-var d = (t, e = document.body) => Array.from(e.querySelectorAll(t));
+var v = (t, e = document.body) => Array.from(e.querySelectorAll(t));
 var y = ({
   newElement: t,
   existingElement: e
@@ -42,10 +42,18 @@ var O = ({
     keysCheck: ["all 0s ease 0s", "all"]
   });
 };
-var v = (t, e, n) => {
+var h = (t, e, n) => {
   const s = new CustomEvent(e, { detail: n });
   t.dispatchEvent(s);
 };
+function A(t) {
+  const e = () => {
+    document.querySelector(
+      "[data-fx-component]:not([data-component-initialized])"
+    ) ? requestAnimationFrame(e) : t();
+  };
+  e();
+}
 function B(t, e, n = "move") {
   if (!(t instanceof HTMLElement))
     throw new Error("Source element must be an HTMLElement");
@@ -77,7 +85,7 @@ function B(t, e, n = "move") {
     }
   });
 }
-var A = (t) => {
+var S = (t) => {
   var e;
   return (e = t.parentElement) == null ? void 0 : e.removeChild(t);
 };
@@ -85,11 +93,11 @@ var C = (t) => {
   t.setAttribute("data-state", "invisible"), O({
     element: t,
     callback() {
-      A(t);
+      S(t);
     }
   });
 };
-var L = (t, e) => {
+var x = (t, e) => {
   const n = t;
   if (n === "" || !n)
     return;
@@ -100,9 +108,9 @@ var L = (t, e) => {
   return n !== "" && s.classList.add(...a), s;
 };
 var u = (t, e, n) => {
-  t.setAttribute("aria-hidden", n === "open" ? "false" : "true"), t.setAttribute("data-state", n), e || S(n);
+  t.setAttribute("aria-hidden", n === "open" ? "false" : "true"), t.setAttribute("data-state", n), e || L(n);
 };
-var S = (t) => {
+var L = (t) => {
   document.body.style.overflow = t === "open" ? "hidden" : "", document.body.style.overflowY = t === "open" ? "hidden" : "auto";
 };
 var I = (t, e) => {
@@ -112,13 +120,13 @@ var I = (t, e) => {
   const n = m(`[data-fx-offcanvas-overlay][data-offcanvas-el=${t.getAttribute("id")}]`, t.parentElement);
   n instanceof HTMLElement && C(n);
 };
-var x = (t) => {
-  const e = d("[data-fx-offcanvas][data-state=open]");
+var T = (t) => {
+  const e = v("[data-fx-offcanvas][data-state=open]");
   if (!(e.length <= 0))
     for (const n of e)
       I(n, t);
 };
-var h = class {
+var d = class {
   static initGlobalRegistry() {
     window.$flexillaInstances || (window.$flexillaInstances = {});
   }
@@ -135,6 +143,12 @@ var h = class {
     this.initGlobalRegistry(), window.$flexillaInstances[e] && (window.$flexillaInstances[e] = window.$flexillaInstances[e].filter(
       (s) => s.element !== n
     ));
+  }
+  static setup(e) {
+    e.setAttribute("data-fx-component", "fx");
+  }
+  static initialized(e) {
+    e.setAttribute("data-component-initialized", "initialized");
   }
 };
 var f = class f2 {
@@ -165,7 +179,7 @@ var f = class f2 {
     o(this, "options");
     o(this, "teleporter");
     o(this, "moveElOnInit", () => {
-      this.teleporter.append();
+      A(() => this.teleporter.append());
     });
     o(this, "closeWhenClickOutSide", (e2) => {
       const n2 = this.offCanvasElement.getAttribute("data-state") === "open", s2 = !this.offCanvasElement.contains(e2.target) && ![...this.offCanvasTriggers].includes(e2.target);
@@ -174,10 +188,10 @@ var f = class f2 {
     o(this, "closeOffCanvas", () => {
       var i2, l2, r2, c2, p;
       let e2 = false;
-      if (v(this.offCanvasElement, "offcanvas-before-hide", {
+      if (h(this.offCanvasElement, "offcanvas-before-hide", {
         offcanvasId: this.offCanvasElement.id,
-        setExitAction: (g) => {
-          e2 = g;
+        setExitAction: (b) => {
+          e2 = b;
         }
       }), ((r2 = (l2 = (i2 = this.options).beforeHide) == null ? void 0 : l2.call(i2)) == null ? void 0 : r2.cancelAction) || e2)
         return;
@@ -186,7 +200,7 @@ var f = class f2 {
         this.offCanvasElement,
         this.allowBodyScroll,
         "close"
-      ), document.removeEventListener("keydown", this.closeWithEsc), !this.allowBodyScroll && !a2 && document.removeEventListener("click", this.closeWhenClickOutSide), (p = (c2 = this.options).onHide) == null || p.call(c2), v(this.offCanvasElement, "offcanvas-close", { offcanvasId: this.offCanvasElement.id });
+      ), document.removeEventListener("keydown", this.closeWithEsc), !this.allowBodyScroll && !a2 && document.removeEventListener("click", this.closeWhenClickOutSide), (p = (c2 = this.options).onHide) == null || p.call(c2), h(this.offCanvasElement, "offcanvas-close", { offcanvasId: this.offCanvasElement.id });
     });
     o(this, "closeWithEsc", (e2) => {
       e2.key === "Escape" && (e2.preventDefault(), this.closeOffCanvas());
@@ -200,33 +214,33 @@ var f = class f2 {
     const s = typeof e == "string" ? m(e) : e;
     if (!(s instanceof HTMLElement))
       throw new Error("Invalid Offcanvas, the provided Element is not a valid HTMLElement");
-    const a = h.getInstance("offcanvas", s);
+    const a = d.getInstance("offcanvas", s);
     if (a)
       return a;
-    this.options = n;
+    d.setup(this.offCanvasElement), this.options = n;
     const { staticBackdrop: i, allowBodyScroll: l, backdrop: r } = this.options;
     this.offCanvasElement = s, this.setupAttributes(), this.staticBackdrop = i || s.hasAttribute("data-static-backdrop") && s.dataset.staticBackdrop !== "false" || false, this.allowBodyScroll = l || s.hasAttribute("data-allow-body-scroll") && s.dataset.allowBodyScroll !== "false" || false;
     const c = this.offCanvasElement.getAttribute("id");
-    this.offCanvasTriggers = this.findOffCanvasElements("[data-offcanvas-trigger]", false, c), this.offCanvasCloseBtns = this.findOffCanvasElements("[data-offcanvas-close]", true, c, this.offCanvasElement), this.backdrop = r || this.offCanvasElement.dataset.offcanvasBackdrop || "", this.teleporter = B(this.offCanvasElement, document.body, "move"), this.setupOffcanvas(), this.moveElOnInit(), h.register("offcanvas", this.offCanvasElement, this);
+    this.offCanvasTriggers = this.findOffCanvasElements("[data-offcanvas-trigger]", false, c), this.offCanvasCloseBtns = this.findOffCanvasElements("[data-offcanvas-close]", true, c, this.offCanvasElement), this.backdrop = r || this.offCanvasElement.dataset.offcanvasBackdrop || "", this.teleporter = B(this.offCanvasElement, document.body, "move"), this.setupOffcanvas(), this.moveElOnInit(), d.register("offcanvas", this.offCanvasElement, this), d.initialized(this.offCanvasElement);
   }
   findOffCanvasElements(e, n, s, a) {
-    return n ? d(`${e}`, a) : d(`${e}[data-target=${s}]`);
+    return n ? v(`${e}`, a) : v(`${e}[data-target=${s}]`);
   }
   setupAttributes() {
     this.offCanvasElement.hasAttribute("data-fx-offcanvas") || this.offCanvasElement.setAttribute("data-fx-offcanvas", "");
   }
   openOffCanvas() {
     var s, a, i, l;
-    (a = (s = this.options).beforeShow) == null || a.call(s), x(this.offCanvasElement), u(
+    (a = (s = this.options).beforeShow) == null || a.call(s), T(this.offCanvasElement), u(
       this.offCanvasElement,
       this.allowBodyScroll,
       "open"
     );
-    const e = this.offCanvasElement.getAttribute("id"), n = L(
+    const e = this.offCanvasElement.getAttribute("id"), n = x(
       this.backdrop,
       e
     );
-    n instanceof HTMLElement && (y({ newElement: n, existingElement: this.offCanvasElement }), this.staticBackdrop || n.addEventListener("click", this.closeOffCanvas)), document.addEventListener("keydown", this.closeWithEsc), (l = (i = this.options).onShow) == null || l.call(i), v(this.offCanvasElement, "offcanvas-open", { offcanvasId: this.offCanvasElement.id });
+    n instanceof HTMLElement && (y({ newElement: n, existingElement: this.offCanvasElement }), this.staticBackdrop || n.addEventListener("click", this.closeOffCanvas)), document.addEventListener("keydown", this.closeWithEsc), (l = (i = this.options).onShow) == null || l.call(i), h(this.offCanvasElement, "offcanvas-open", { offcanvasId: this.offCanvasElement.id });
   }
   initCloseBtns() {
     for (const e of this.offCanvasCloseBtns)
@@ -280,11 +294,11 @@ var f = class f2 {
       e.removeEventListener("click", this.changeState);
     for (const e of this.offCanvasCloseBtns)
       e.removeEventListener("click", this.closeOffCanvas);
-    document.removeEventListener("keydown", this.closeWithEsc), this.allowBodyScroll || document.removeEventListener("click", this.closeWhenClickOutSide), h.removeInstance("offcanvas", this.offCanvasElement);
+    document.removeEventListener("keydown", this.closeWithEsc), this.allowBodyScroll || document.removeEventListener("click", this.closeWhenClickOutSide), d.removeInstance("offcanvas", this.offCanvasElement);
   }
 };
 o(f, "autoInit", (e = "[data-fx-offcanvas]") => {
-  const n = d(e);
+  const n = v(e);
   for (const s of n)
     new f(s);
 }), /**

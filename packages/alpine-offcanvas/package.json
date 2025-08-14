@@ -61,6 +61,6 @@
   ],
   "dependencies": {
     "@flexilla/alpine-offcanvas": "^0.0.3",
-    "@flexilla/offcanvas": "^2.1.1"
+    "@flexilla/offcanvas": "^2.1.2"
   }
 }
