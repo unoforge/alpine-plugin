@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Alpine Autosize Examples</title>
+
+</head>
+
+<body x-data>
+  <section class="mx-auto space-y-16 max-w-2xl py-20">
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-zinc-900 dark:text-white">
+        Default Accordion
+      </h1>
+      <div class="p-10 rounded-lg bg-gradient-to-bl from-blue-600 via-indigo-400 to-sky-600">
+        <div x-data x-pin-input class="flex items-center gap-2">
+            <input data-pin-input maxlength="1" class="size-10 border border-gray-200 rounded-md text-center"/>
+            <input data-pin-input maxlength="1" class="size-10 border border-gray-200 rounded-md text-center"/>
+            <input data-pin-input maxlength="1" class="size-10 border border-gray-200 rounded-md text-center"/>
+            <input data-pin-input maxlength="1" class="size-10 border border-gray-200 rounded-md text-center"/>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="./../src/main.js"></script>
+</body>
+
+</html>

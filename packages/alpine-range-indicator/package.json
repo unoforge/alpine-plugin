@@ -60,6 +60,6 @@
     "Flexilla"
   ],
   "dependencies": {
-    "@flexilla/custom-range": "^2.0.11"
+    "@flexilla/custom-range": "^2.0.13"
   }
 }

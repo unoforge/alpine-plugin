@@ -60,6 +60,6 @@
     "Dissmiss"
   ],
   "dependencies": {
-    "@flexilla/dismissible": "^2.0.12"
+    "@flexilla/dismissible": "^2.0.14"
   }
 }

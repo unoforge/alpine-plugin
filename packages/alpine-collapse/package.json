@@ -59,6 +59,6 @@
     "Flexilla"
   ],
   "dependencies": {
-    "@flexilla/collapse": "^2.1.4"
+    "@flexilla/collapse": "^2.1.5"
   }
 }
