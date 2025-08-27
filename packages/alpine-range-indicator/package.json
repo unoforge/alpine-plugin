@@ -1,6 +1,6 @@
 {
   "name": "@flexilla/alpine-range-indicator",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "AlpineJS plugin for adding an indicator to an input range",
   "type": "module",
   "private": false,
