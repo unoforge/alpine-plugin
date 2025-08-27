@@ -10,7 +10,7 @@ import Offcanvas from "./../../packages/alpine-offcanvas";
 import Tabs from "./../../packages/alpine-tabs";
 import Navbar from "./../../packages/alpine-navbar";
 import AutoResize from "./../../packages/alpine-autoresize-area";
-
+import PinInput from "./../../packages/alpine-pin-input";
 
 window.Alpine = Alpine;
 Alpine.plugin(FlexillaAccordion);
@@ -23,4 +23,5 @@ Alpine.plugin(Offcanvas);
 Alpine.plugin(Tabs);
 Alpine.plugin(Navbar);
 Alpine.plugin(AutoResize);
+Alpine.plugin(PinInput);
 Alpine.start();

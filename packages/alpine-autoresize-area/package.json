@@ -60,6 +60,6 @@
     "AutoResize"
   ],
   "dependencies": {
-    "@flexilla/auto-resize-area": "^2.0.11"
+    "@flexilla/auto-resize-area": "^2.0.14"
   }
 }

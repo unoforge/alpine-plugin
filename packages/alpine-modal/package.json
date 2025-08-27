@@ -66,6 +66,6 @@
     "Dissmiss"
   ],
   "dependencies": {
-    "@flexilla/modal": "^2.3.2"
+    "@flexilla/modal": "^2.3.4"
   }
 }

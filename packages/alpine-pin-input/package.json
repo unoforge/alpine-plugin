@@ -1,7 +1,7 @@
 {
-  "name": "@flexilla/alpine-popover",
-  "version": "0.2.0",
-  "description": "AlpineJS plugin for adding Popover functionality to your AlpineJS components",
+  "name": "@flexilla/alpine-pin-input",
+  "version": "0.1.1",
+  "description": "AlpineJS directive to add Scroll to top",
   "type": "module",
   "private": false,
   "publishConfig": {
@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/unoforge/alpine-plugin/issues"
   },
-  "homepage": "https://github.com/unoforge/alpine-plugin/packages/alpine-popover/README.md",
+  "homepage": "https://github.com/unoforge/alpine-plugin/packages/alpine-navbar/README.md",
   "devDependencies": {
     "brotli-size": "^4.0.0",
     "esbuild": "^0.25.1",
@@ -48,18 +48,17 @@
   ],
   "keywords": [
     "AlpineJS",
-    "Popover",
-    "Alpine Overlay",
-    "Toggle Popover",
-    "Alpine Plugin Popover",
-    "Alpine Plugin",
+    "Alpine navigation",
+    "Toggle scroll-to-top",
+    "Alpine Scroll To Top",
     "Alpinejs Pugin",
+    "ts",
     "component",
     "interactive",
     "intercative component",
     "Flexilla"
   ],
   "dependencies": {
-    "@flexilla/popover": "^1.0.3"
+    "@flexilla/utilities": "^2.1.1"
   }
 }
