@@ -67,5 +67,6 @@
   ],
   "dependencies": {
     "@flexilla/modal": "^2.3.5"
-  }
+  },
+  "gitHead": "ae2c044692676906202ec6d8bb7a61a553c3bf74"
 }

@@ -61,5 +61,6 @@
   ],
   "dependencies": {
     "@flexilla/offcanvas": "^2.2.1"
-  }
+  },
+  "gitHead": "ae2c044692676906202ec6d8bb7a61a553c3bf74"
 }
